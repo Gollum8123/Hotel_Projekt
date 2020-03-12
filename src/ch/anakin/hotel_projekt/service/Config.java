@@ -20,7 +20,7 @@ import java.util.Set;
 @ApplicationPath("/resource")
 
 public class Config extends Application {
-    private static final String PROPERTIES_PATH = "/home/bzz/webapp/book.properties";
+    private static final String PROPERTIES_PATH = "/home/bzz/webapp/gast.properties";
     private static Properties properties = null;
 
     /**

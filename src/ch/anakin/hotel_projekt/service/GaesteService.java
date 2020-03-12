@@ -23,7 +23,7 @@ import java.util.Vector;
  * @since 12.03.20
  */
 
-@Path("gaeste")
+@Path("gast")
 public class GaesteService {
 
 

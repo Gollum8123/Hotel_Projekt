@@ -1,5 +1,7 @@
 package ch.anakin.hotel_projekt.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -24,14 +26,14 @@ public class Gast {
     private String land;
     private String telefon;
     private String mobil;
-    private Date geburtsdatum;
+    private LocalDate geburtsdatum;
     private String mail;
 
     /**
      * Gästeattribute
      */
-    private Date check_in;
-    private Date check_out;
+    private LocalDateTime check_in;
+    private LocalDateTime check_out;
     private String kredidkarten_infos;
 
     /**
@@ -210,7 +212,7 @@ public class Gast {
      *
      * @return value of geburtsdatum
      */
-    public Date getGeburtsdatum() {
+    public LocalDate getGeburtsdatum() {
         return geburtsdatum;
     }
 
@@ -220,7 +222,7 @@ public class Gast {
      * @param geburtsdatum the value to set
      */
 
-    public void setGeburtsdatum(Date geburtsdatum) {
+    public void setGeburtsdatum(LocalDate geburtsdatum) {
         this.geburtsdatum = geburtsdatum;
     }
 
@@ -248,7 +250,7 @@ public class Gast {
      *
      * @return value of check_in
      */
-    public Date getCheck_in() {
+    public LocalDateTime getCheck_in() {
         return check_in;
     }
 
@@ -258,7 +260,7 @@ public class Gast {
      * @param check_in the value to set
      */
 
-    public void setCheck_in(Date check_in) {
+    public void setCheck_in(LocalDateTime check_in) {
         this.check_in = check_in;
     }
 
@@ -267,7 +269,7 @@ public class Gast {
      *
      * @return value of check_out
      */
-    public Date getCheck_out() {
+    public LocalDateTime getCheck_out() {
         return check_out;
     }
 
@@ -277,7 +279,7 @@ public class Gast {
      * @param check_out the value to set
      */
 
-    public void setCheck_out(Date check_out) {
+    public void setCheck_out(LocalDateTime check_out) {
         this.check_out = check_out;
     }
 
