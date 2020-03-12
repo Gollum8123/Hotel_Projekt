@@ -7,7 +7,7 @@ import java.util.Vector;
  * <p>
  * Hotel_Projekt
  *
- * @author TODO
+ * @author Anakin Kirschler
  * @version 1.0
  * @since 05.03.20
  */
