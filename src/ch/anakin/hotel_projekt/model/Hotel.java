@@ -1,5 +1,6 @@
 package ch.anakin.hotel_projekt.model;
 
+import javax.ws.rs.FormParam;
 import java.util.Vector;
 
 /**
@@ -21,8 +22,10 @@ public class Hotel {
     private String wohnort;
     private String land;
     private int baujahr;
+
+
     private String typ;
-    private Vector<Gaeste> gaesteListe;
+    private Vector<Gast> gaesteListe;
 
 
     /**
@@ -201,7 +204,7 @@ public class Hotel {
      *
      * @return value of gaesteListe
      */
-    public Vector<Gaeste> getGaesteListe() {
+    public Vector<Gast> getGaesteListe() {
         return gaesteListe;
     }
 
@@ -211,7 +214,7 @@ public class Hotel {
      * @param gaesteListe the value to set
      */
 
-    public void setGaesteListe(Vector<Gaeste> gaesteListe) {
+    public void setGaesteListe(Vector<Gast> gaesteListe) {
         this.gaesteListe = gaesteListe;
     }
 }

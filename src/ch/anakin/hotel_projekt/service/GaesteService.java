@@ -1,5 +1,7 @@
 package ch.anakin.hotel_projekt.service;
 
+import ch.anakin.hotel_projekt.model.Gast;
+import ch.anakin.hotel_projekt.model.Hotel;
 import jdk.nashorn.internal.objects.annotations.Getter;
 
 import javax.ws.rs.GET;
@@ -9,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.awt.*;
 import java.util.ResourceBundle;
+import java.util.Vector;
 
 /**
  * short description
@@ -30,9 +33,11 @@ public class GaesteService {
 
     public Response listGaeste(){
 
+        Vector<Gast> gastVector = new Hotel().getGaesteListe();
+
         Response response = Response
                 .status(200)
-                .entity()
+                .entity(gastVector)
                 .build();
         return response;
     }

@@ -11,7 +11,7 @@ import java.util.Date;
  * @version 1.0
  * @since 05.03.20
  */
-public class Gaeste {
+public class Gast {
     /**
      * Personattribute
      */
