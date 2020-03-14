@@ -223,4 +223,31 @@ public class Hotel {
     public void setGaesteListe(Vector<Gast> gaesteListe) {
         this.gaesteListe = gaesteListe;
     }
+
+
+    public Gast getGast(String schluesselwort){
+
+        for (Gast gast : gaesteListe) {
+            if (gast.getVorname().equals(schluesselwort)){
+                return gast;
+            }else if (gast.getNachname().equals(schluesselwort)){
+                return gast;
+            }else if (gast.getMobil().equals(schluesselwort)){
+                return gast;
+            }
+        }
+        return null;
+
+    }
+
+    public Gast getGast(String vorname, String nachname){
+        for (Gast gast : gaesteListe) {
+            if (gast.getVorname().equals(vorname) && gast.getNachname().equals(nachname)){
+                return gast;
+            }
+        }
+        return null;
+
+    }
+
 }

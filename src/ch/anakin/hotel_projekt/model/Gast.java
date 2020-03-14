@@ -1,7 +1,9 @@
 package ch.anakin.hotel_projekt.model;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import javax.validation.constraints.Pattern;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -17,24 +19,54 @@ public class Gast {
     /**
      * Personattribute
      */
+    @Pattern(regexp = "[A-Z][a-zA-Z]*")
     private String vorname;
+    @Pattern(regexp = "[a-zA-z]+([ '-][a-zA-Z]+)*")
     private String nachname;
+    @Pattern(regexp = "\\\\s+([a-zA-Z]+|[a-zA-Z]+\\\\s[a-zA-Z]+)")
     private String adresse;
+    @Pattern(regexp = "\\\\d+\\\\s+(([a-zA-Z])+|([a-zA-Z]+\\\\s+[a-zA-Z]+))\\\\s+[a-zA-Z]*")
     private String hausnummer;
+    @Pattern(regexp = "^([0-9A-Za-z]{5}|[0-9A-Za-z]{9}|(([0-9a-zA-Z]{5}-){1}[0-9a-zA-Z]{4}))$")
     private int plz;
+    @Pattern(regexp = "[A-Za-z]{15}")
     private String wohnort;
+    @Pattern(regexp = "^([A-Z][a-z]*)+(?:[\\\\s-][A-Z][a-z]*)*$ ")
     private String land;
+
+    /**
+     * Validate international phone numbers in EPP format
+     */
+    @Pattern(regexp = "^\\+[0-9]{1,3}\\.[0-9]{4,14}(?:x.+)?$")
     private String telefon;
+
+    /**
+     * Validate international phone numbers in EPP format
+     */
+    @Pattern(regexp = "^\\+[0-9]{1,3}\\.[0-9]{4,14}(?:x.+)?$")
     private String mobil;
-    private LocalDate geburtsdatum;
+
+    /**
+     * Regex check in set % get Geburtsdatum
+     */
+    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
+    private Date geburtsdatum;
+
+
+    /**
+     * Java email validation permitted by RFC 5322
+     */
+    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String mail;
 
     /**
      * Gästeattribute
+     * regex check in set % get ckeck_in & check_out
      */
-    private LocalDateTime check_in;
-    private LocalDateTime check_out;
-    private String kredidkarten_infos;
+    private Date check_in;
+    private Date check_out;
+
+
 
     /**
      * Gets the vorname
@@ -212,7 +244,7 @@ public class Gast {
      *
      * @return value of geburtsdatum
      */
-    public LocalDate getGeburtsdatum() {
+    public Date  getGeburtsdatum() {
         return geburtsdatum;
     }
 
@@ -222,8 +254,20 @@ public class Gast {
      * @param geburtsdatum the value to set
      */
 
-    public void setGeburtsdatum(LocalDate geburtsdatum) {
-        this.geburtsdatum = geburtsdatum;
+    public void setGeburtsdatum(String geburtsdatum) {
+
+        Date date = null;
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        try{
+            date = df.parse(geburtsdatum);
+
+        }catch (ParseException ex){
+            System.out.println(ex);
+        }
+        this.check_in = date;
+
+
+        this.geburtsdatum = date;
     }
 
     /**
@@ -250,9 +294,11 @@ public class Gast {
      *
      * @return value of check_in
      */
-    public LocalDateTime getCheck_in() {
+    public Date getCheck_in() {
         return check_in;
     }
+
+
 
     /**
      * Sets the check_in
@@ -260,16 +306,28 @@ public class Gast {
      * @param check_in the value to set
      */
 
-    public void setCheck_in(LocalDateTime check_in) {
-        this.check_in = check_in;
+    public void setCheck_in(String check_in) {
+
+        Date date = null;
+        DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        try{
+            date = df2.parse(check_in);
+
+        }catch (ParseException ex){
+            System.out.println(ex);
+        }
+        this.check_in = date;
+
     }
+
+    public void setCheck_in(Date date){this.check_in = check_in;}
 
     /**
      * Gets the check_out
      *
      * @return value of check_out
      */
-    public LocalDateTime getCheck_out() {
+    public Date getCheck_out() {
         return check_out;
     }
 
@@ -279,26 +337,21 @@ public class Gast {
      * @param check_out the value to set
      */
 
-    public void setCheck_out(LocalDateTime check_out) {
-        this.check_out = check_out;
+    public void setCheck_out(String check_out) {
+        Date date = null;
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        try{
+            date = df.parse(check_out);
+
+        }catch (ParseException ex){
+            System.out.println(ex);
+        }
+        this.check_out = date;
+
     }
 
-    /**
-     * Gets the kredidkarten_infos
-     *
-     * @return value of kredidkarten_infos
-     */
-    public String getKredidkarten_infos() {
-        return kredidkarten_infos;
-    }
 
-    /**
-     * Sets the kredidkarten_infos
-     *
-     * @param kredidkarten_infos the value to set
-     */
 
-    public void setKredidkarten_infos(String kredidkarten_infos) {
-        this.kredidkarten_infos = kredidkarten_infos;
-    }
+
+
 }

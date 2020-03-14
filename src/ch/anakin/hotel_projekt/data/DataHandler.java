@@ -61,20 +61,16 @@ public class DataHandler {
                 gast.setVorname(values[0]);
                 gast.setNachname(values[1]);
                 gast.setAdresse(values[2]);
-                gast.setAdresse(values[3]);
-                gast.setHausnummer(values[4]);
-                gast.setPlz(new Integer(values[5]));
-                gast.setWohnort(values[6]);
-                gast.setLand(values[7]);
-                gast.setTelefon(values[8]);
-                gast.setMobil(values[9]);
-                LocalDate date = LocalDate.parse(values[10]);
-                gast.setGeburtsdatum(date);
-                gast.setMail(values[11]);
-                LocalDateTime localDateTime = LocalDateTime.parse(values[12]);
-                gast.setCheck_in(localDateTime);
-                localDateTime = LocalDateTime.parse(values[13]);
-                gast.setCheck_out(localDateTime);
+                gast.setHausnummer(values[3]);
+                gast.setPlz(new Integer(values[4]));
+                gast.setWohnort(values[4]);
+                gast.setLand(values[6]);
+                gast.setTelefon(values[7]);
+                gast.setMobil(values[8]);
+                gast.setGeburtsdatum(values[9]);
+                gast.setMail(values[10]);
+                gast.setCheck_in(values[11]);
+                gast.setCheck_out(values[12]);
 
                 gastVector.add(gast);
 
