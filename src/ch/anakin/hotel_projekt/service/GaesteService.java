@@ -2,17 +2,12 @@ package ch.anakin.hotel_projekt.service;
 
 import ch.anakin.hotel_projekt.model.Gast;
 import ch.anakin.hotel_projekt.model.Hotel;
-import jdk.nashorn.internal.objects.annotations.Getter;
-
-import javax.validation.constraints.Pattern;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.awt.*;
-import java.util.ResourceBundle;
 import java.util.Vector;
 
 /**

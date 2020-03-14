@@ -2,8 +2,6 @@ package ch.anakin.hotel_projekt.model;
 
 import ch.anakin.hotel_projekt.data.DataHandler;
 
-import javax.ws.rs.FormParam;
-import java.text.DateFormat;
 import java.util.Vector;
 
 /**

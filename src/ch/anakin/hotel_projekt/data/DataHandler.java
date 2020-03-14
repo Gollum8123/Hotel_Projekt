@@ -3,9 +3,6 @@ package ch.anakin.hotel_projekt.data;
 import ch.anakin.hotel_projekt.model.Gast;
 import ch.anakin.hotel_projekt.service.Config;
 import java.io.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 import java.util.Vector;
 
 /**
