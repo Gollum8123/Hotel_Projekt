@@ -7,10 +7,12 @@ import ch.anakin.hotel_projekt.model.Hotel;
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.xml.crypto.Data;
+import java.util.UUID;
 import java.util.Vector;
 
 /**
@@ -80,10 +82,10 @@ public class GaesteService {
         @Valid @BeanParam Gast gast
     ){
         int httpStatus = 200;
-        //Hotel hotel = new Hotel();
-        //hotel.getGaesteListe().add(gast);
+        Hotel hotel = new Hotel();
+        hotel.getGaesteListe().add(gast);
 
-        // DataHandler.writeBooks(hotel.getGaesteListe());
+        DataHandler.writeBooks(hotel.getGaesteListe());
 
         Response response = Response
                 .status(httpStatus)
@@ -93,4 +95,35 @@ public class GaesteService {
 
     }
 
+    @DELETE
+    @Path("delete")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response deleteBook(
+            @QueryParam("schlüsselwort") String schlüsselwort
+    ) {
+        int httpStatus;
+        try {
+            Hotel hotel = new Hotel();
+            Gast gast  = hotel.getGast(schlüsselwort);
+            if (gast != null) {
+                httpStatus = 200;
+                hotel.getGaesteListe().remove(gast);
+                DataHandler.writeBooks(hotel.getGaesteListe());
+            } else {
+                httpStatus = 404;
+            }
+        } catch (IllegalArgumentException argEx) {
+            httpStatus = 400;
+        }
+
+        Response response = Response
+                .status(httpStatus)
+                .entity("")
+                .build();
+        return response;
+    }
 }
+
+
+
+

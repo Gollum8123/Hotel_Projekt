@@ -60,6 +60,7 @@ public class Gast {
      * Validate international phone numbers in EPP format
      */
     @FormParam("telefon")
+
     @Pattern(regexp = "[0-9]*")
     private String telefon;
 
@@ -297,12 +298,9 @@ public class Gast {
         try{
             date = df.parse(geburtsdatum);
 
-        }catch (ParseException ex){
+        }catch (ParseException ex) {
             System.out.println(ex);
         }
-        this.check_in = date;
-
-
         this.geburtsdatum = date;
     }
 
