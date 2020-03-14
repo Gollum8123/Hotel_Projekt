@@ -1,13 +1,16 @@
 package ch.anakin.hotel_projekt.service;
 
+import ch.anakin.hotel_projekt.data.DataHandler;
 import ch.anakin.hotel_projekt.model.Gast;
 import ch.anakin.hotel_projekt.model.Hotel;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+
+import javax.annotation.PostConstruct;
+import javax.validation.Valid;
+import javax.validation.constraints.Past;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.crypto.Data;
 import java.util.Vector;
 
 /**
@@ -64,6 +67,27 @@ public class GaesteService {
         Response response = Response
                 .status(hattpStatus)
                 .entity(gast)
+                .build();
+        return response;
+
+    }
+
+    @POST
+    @Path("create")
+    @Produces(MediaType.TEXT_PLAIN)
+
+    public Response createGast(
+        @Valid @BeanParam Gast gast
+    ){
+        int httpStatus = 200;
+        //Hotel hotel = new Hotel();
+        //hotel.getGaesteListe().add(gast);
+
+        // DataHandler.writeBooks(hotel.getGaesteListe());
+
+        Response response = Response
+                .status(httpStatus)
+                .entity("")
                 .build();
         return response;
 

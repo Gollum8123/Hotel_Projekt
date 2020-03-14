@@ -1,6 +1,7 @@
 package ch.anakin.hotel_projekt.model;
 
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
+import javax.ws.rs.FormParam;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,51 +20,86 @@ public class Gast {
     /**
      * Personattribute
      */
+
+    @FormParam("vorname")
+    
     @Pattern(regexp = "[A-Z][a-zA-Z]*")
+    @Size(min=1, max=50)
     private String vorname;
-    @Pattern(regexp = "[a-zA-z]+([ '-][a-zA-Z]+)*")
+
+    @FormParam("nachname")
+
+    @Size(min=1, max=50)
+    @Pattern(regexp = "[A-Z][a-zA-Z]*")
     private String nachname;
-    @Pattern(regexp = "\\\\s+([a-zA-Z]+|[a-zA-Z]+\\\\s[a-zA-Z]+)")
+
+    @FormParam("adresse")
+    @Pattern(regexp = "[A-Za-z]*")
     private String adresse;
-    @Pattern(regexp = "\\\\d+\\\\s+(([a-zA-Z])+|([a-zA-Z]+\\\\s+[a-zA-Z]+))\\\\s+[a-zA-Z]*")
+
+    @FormParam("hausnummer")
+    
+    @Pattern(regexp = "[0-9]*")
     private String hausnummer;
-    @Pattern(regexp = "^([0-9A-Za-z]{5}|[0-9A-Za-z]{9}|(([0-9a-zA-Z]{5}-){1}[0-9a-zA-Z]{4}))$")
-    private int plz;
-    @Pattern(regexp = "[A-Za-z]{15}")
+
+    @FormParam("plz")
+    
+    private Integer plz;
+
+    @FormParam("wohnort")
+    
+    @Pattern(regexp = "[A-Za-z]*")
     private String wohnort;
-    @Pattern(regexp = "^([A-Z][a-z]*)+(?:[\\\\s-][A-Z][a-z]*)*$ ")
+
+    @FormParam("land")
+    
+    @Pattern(regexp = "[A-Za-z]*")
     private String land;
 
     /**
      * Validate international phone numbers in EPP format
      */
-    @Pattern(regexp = "^\\+[0-9]{1,3}\\.[0-9]{4,14}(?:x.+)?$")
+    @FormParam("telefon")
+    @Pattern(regexp = "[0-9]*")
     private String telefon;
 
     /**
      * Validate international phone numbers in EPP format
      */
-    @Pattern(regexp = "^\\+[0-9]{1,3}\\.[0-9]{4,14}(?:x.+)?$")
+    @FormParam("mobil")
+    
+    @Pattern(regexp = "[0-9]*")
     private String mobil;
 
     /**
      * Regex check in set % get Geburtsdatum
      */
-    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
+    @FormParam("geburtsdatum")
+    
+    //@Past
     private Date geburtsdatum;
 
 
     /**
-     * Java email validation permitted by RFC 5322
+     * Java email validation permitted by RFC822
      */
-    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+    @FormParam("mail")
+    
+    @Email
     private String mail;
 
     /**
      * Gästeattribute
      * regex check in set % get ckeck_in & check_out
      */
+
+    @FormParam("check_in")
+    
     private Date check_in;
+
+
+    @FormParam("check_out")
+    
     private Date check_out;
 
 
@@ -149,7 +185,7 @@ public class Gast {
      *
      * @return value of plz
      */
-    public int getPlz() {
+    public Integer getPlz() {
         return plz;
     }
 
@@ -159,7 +195,7 @@ public class Gast {
      * @param plz the value to set
      */
 
-    public void setPlz(int plz) {
+    public void setPlz(Integer plz) {
         this.plz = plz;
     }
 

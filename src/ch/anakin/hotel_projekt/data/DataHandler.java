@@ -90,6 +90,54 @@ public class DataHandler {
         }
     }
 
+    public static void writeBooks(Vector<Gast> gastVector) {
+        Writer writer = null;
+        FileOutputStream fileOutputStream = null;
+
+        try {
+            String bookPath = Config.getProperty("gaesteFile");
+            fileOutputStream = new FileOutputStream(bookPath);
+            writer = new BufferedWriter(new OutputStreamWriter(fileOutputStream, "utf-8"));
+
+            for (Gast gastEingabe : gastVector) {
+                String contents = String.join(";",
+                        gastEingabe.getVorname(),
+                        gastEingabe.getNachname(),
+                        gastEingabe.getAdresse(),
+                        gastEingabe.getHausnummer(),
+                        gastEingabe.getPlz().toString(),
+                        gastEingabe.getWohnort(),
+                        gastEingabe.getLand(),
+                        gastEingabe.getTelefon(),
+                        gastEingabe.getMobil(),
+                        gastEingabe.getGeburtsdatum().toString(),
+                        gastEingabe.getMail(),
+                        gastEingabe.getCheck_in().toString(),
+                        gastEingabe.getCheck_out().toString()
+                );
+                writer.write(contents + '\n');
+            }
+        } catch (IOException ioEx) {
+            ioEx.printStackTrace();
+            throw new RuntimeException();
+
+        } finally {
+
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+
+                if (fileOutputStream != null) {
+                    fileOutputStream.close();
+
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
 
     public static Vector<Gast> getGastVector() {
         if (gastVector.isEmpty()) {
