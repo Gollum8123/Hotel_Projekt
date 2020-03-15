@@ -96,7 +96,7 @@ public class DataHandler {
      *
      * @param gastVector the gast vector
      */
-    public static void writeBooks(Vector<Gast> gastVector) {
+    public static void writeGaeste(Vector<Gast> gastVector) {
         Writer writer = null;
         FileOutputStream fileOutputStream = null;
 

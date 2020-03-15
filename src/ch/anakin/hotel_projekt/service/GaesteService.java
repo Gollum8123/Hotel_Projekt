@@ -96,7 +96,7 @@ public class GaesteService {
         Hotel hotel = new Hotel();
         hotel.getGaesteListe().add(gast);
 
-        DataHandler.writeBooks(hotel.getGaesteListe());
+        DataHandler.writeGaeste(hotel.getGaesteListe());
 
         Response response = Response
                 .status(httpStatus)
@@ -125,7 +125,7 @@ public class GaesteService {
             if (gast != null) {
                 httpStatus = 200;
                 hotel.getGaesteListe().remove(gast);
-                DataHandler.writeBooks(hotel.getGaesteListe());
+                DataHandler.writeGaeste(hotel.getGaesteListe());
             } else {
                 httpStatus = 404;
             }
@@ -145,25 +145,24 @@ public class GaesteService {
      * Update book response.
      *
      * @param gast          the gast
-     * @param schluesselwort the schlüsselwort
      * @return the response
      */
     @PUT
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateBook(
-            @Valid @BeanParam Gast gast,
-            @QueryParam("schluesselwort") String schluesselwort
+            @Valid @BeanParam Gast gast
 
     ) {
         int httpStatus;
         try {
             Hotel hotel = new Hotel();
-            gast = hotel.getGast(schluesselwort);
+            hotel.getGaesteListe().remove(hotel.getGast(gast.getVorname()));
+            hotel.getGaesteListe().add(gast);
             if (gast != null) {
                 httpStatus = 200;
 
-                DataHandler.writeBooks(hotel.getGaesteListe());
+                DataHandler.writeGaeste(hotel.getGaesteListe());
             } else {
                 httpStatus = 404;
             }

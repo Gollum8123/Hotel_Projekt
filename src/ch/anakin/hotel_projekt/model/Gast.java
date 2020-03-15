@@ -76,7 +76,7 @@ public class Gast {
      *
      */
     @FormParam("geburtsdatum")
-    @Pattern(regexp = "[0-9]{2}+[0-9]{2}+[0-9]{4}")
+   // @Pattern(regexp = "[0-9]{2}+[0-9]{2}+[0-9]{4}")
     private String geburtsdatum;
 
 
