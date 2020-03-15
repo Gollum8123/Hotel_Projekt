@@ -2,16 +2,15 @@ package ch.anakin.hotel_projekt.data;
 
 import ch.anakin.hotel_projekt.model.Gast;
 import ch.anakin.hotel_projekt.service.Config;
+
 import java.io.*;
 import java.util.Vector;
 
 /**
  * data handler for reading and writing the csv files
- * <p>
  *
  * @author Anakin Kirschler
  */
-
 public class DataHandler {
     private static final DataHandler instance = new DataHandler();
     private static Vector<Gast> gastVector = new Vector<>();
@@ -24,6 +23,8 @@ public class DataHandler {
     }
 
     /**
+     * Gets instance.
+     *
      * @return the instance of this class
      */
     public static DataHandler getInstance() {
@@ -90,6 +91,11 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Write books.
+     *
+     * @param gastVector the gast vector
+     */
     public static void writeBooks(Vector<Gast> gastVector) {
         Writer writer = null;
         FileOutputStream fileOutputStream = null;
@@ -110,10 +116,10 @@ public class DataHandler {
                         gastEingabe.getLand(),
                         gastEingabe.getTelefon(),
                         gastEingabe.getMobil(),
-                        gastEingabe.getGeburtsdatum().toString(),
+                        gastEingabe.getGeburtsdatum(),
                         gastEingabe.getMail(),
-                        gastEingabe.getCheck_in().toString(),
-                        gastEingabe.getCheck_out().toString()
+                        gastEingabe.getCheck_in(),
+                        gastEingabe.getCheck_out()
                 );
                 writer.write(contents + '\n');
             }
@@ -139,6 +145,11 @@ public class DataHandler {
     }
 
 
+    /**
+     * Gets gast vector.
+     *
+     * @return the gast vector
+     */
     public static Vector<Gast> getGastVector() {
         if (gastVector.isEmpty()) {
             readGaeste();
@@ -153,7 +164,6 @@ public class DataHandler {
      *
      * @param gastVector the value to set
      */
-
     public static void setGastVector(Vector<Gast> gastVector) {
         DataHandler.gastVector = gastVector;
     }

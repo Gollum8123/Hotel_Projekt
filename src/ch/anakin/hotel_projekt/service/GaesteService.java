@@ -15,15 +15,19 @@ import java.util.Vector;
  * <p>
  * Hotel_Projekt
  *
- * @author TODO
+ * @author Anakin Kirschler
  * @version 1.0
  * @since 12.03.20
  */
-
 @Path("gast")
 public class GaesteService {
 
 
+    /**
+     * List gaeste response.
+     *
+     * @return the response
+     */
     @GET
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
@@ -39,6 +43,12 @@ public class GaesteService {
         return response;
     }
 
+    /**
+     * Search gast response.
+     *
+     * @param schluesselwort the schluesselwort
+     * @return the response
+     */
     @GET
     @Path("search")
     @Produces(MediaType.APPLICATION_JSON)
@@ -69,6 +79,12 @@ public class GaesteService {
 
     }
 
+    /**
+     * Create gast response.
+     *
+     * @param gast the gast
+     * @return the response
+     */
     @POST
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
@@ -90,16 +106,22 @@ public class GaesteService {
 
     }
 
+    /**
+     * Delete book response.
+     *
+     * @param schluesselwort the schlüsselwort
+     * @return the response
+     */
     @DELETE
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)
     public Response deleteBook(
-            @QueryParam("schlüsselwort") String schlüsselwort
+            @QueryParam("schluesselwort") String schluesselwort
     ) {
         int httpStatus;
         try {
             Hotel hotel = new Hotel();
-            Gast gast  = hotel.getGast(schlüsselwort);
+            Gast gast  = hotel.getGast(schluesselwort);
             if (gast != null) {
                 httpStatus = 200;
                 hotel.getGaesteListe().remove(gast);
@@ -119,18 +141,25 @@ public class GaesteService {
     }
 
 
+    /**
+     * Update book response.
+     *
+     * @param gast          the gast
+     * @param schluesselwort the schlüsselwort
+     * @return the response
+     */
     @PUT
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateBook(
             @Valid @BeanParam Gast gast,
-            @QueryParam("schlüsselwort") String schlüsselwort
+            @QueryParam("schluesselwort") String schluesselwort
 
     ) {
         int httpStatus;
         try {
             Hotel hotel = new Hotel();
-            gast = hotel.getGast(schlüsselwort);
+            gast = hotel.getGast(schluesselwort);
             if (gast != null) {
                 httpStatus = 200;
 

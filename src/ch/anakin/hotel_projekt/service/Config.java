@@ -11,12 +11,9 @@ import java.util.Set;
 
 /**
  * configure the web services and properties
- * <p>
- * M151: BookDB
  *
- * @author Marcel Suter (Ghwalin)
+ * @author Anakin Kirschler
  */
-
 @ApplicationPath("/resource")
 
 public class Config extends Application {
@@ -43,7 +40,6 @@ public class Config extends Application {
      * @param property the key of the property to be read
      * @return the value of the property
      */
-
     public static String getProperty(String property) {
         if (Config.properties == null) {
             setProperties(new Properties());

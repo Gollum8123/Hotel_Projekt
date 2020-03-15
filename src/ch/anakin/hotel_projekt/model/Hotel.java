@@ -30,6 +30,9 @@ public class Hotel {
     private String typ;
     private Vector<Gast> gaesteListe;
 
+    /**
+     * Instantiates a new Hotel.
+     */
     public Hotel() {
         this.gaesteListe = DataHandler.getGastVector();
     }
@@ -48,7 +51,6 @@ public class Hotel {
      *
      * @param name the value to set
      */
-
     public void setName(String name) {
         this.name = name;
     }
@@ -67,7 +69,6 @@ public class Hotel {
      *
      * @param sterne the value to set
      */
-
     public void setSterne(int sterne) {
         Sterne = sterne;
     }
@@ -86,7 +87,6 @@ public class Hotel {
      *
      * @param adresse the value to set
      */
-
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
@@ -105,7 +105,6 @@ public class Hotel {
      *
      * @param hausnummer the value to set
      */
-
     public void setHausnummer(String hausnummer) {
         this.hausnummer = hausnummer;
     }
@@ -124,7 +123,6 @@ public class Hotel {
      *
      * @param plz the value to set
      */
-
     public void setPlz(int plz) {
         this.plz = plz;
     }
@@ -143,7 +141,6 @@ public class Hotel {
      *
      * @param wohnort the value to set
      */
-
     public void setWohnort(String wohnort) {
         this.wohnort = wohnort;
     }
@@ -162,7 +159,6 @@ public class Hotel {
      *
      * @param land the value to set
      */
-
     public void setLand(String land) {
         this.land = land;
     }
@@ -181,7 +177,6 @@ public class Hotel {
      *
      * @param baujahr the value to set
      */
-
     public void setBaujahr(Date baujahr) {
         this.baujahr = baujahr;
     }
@@ -200,7 +195,6 @@ public class Hotel {
      *
      * @param typ the value to set
      */
-
     public void setTyp(String typ) {
         this.typ = typ;
     }
@@ -219,20 +213,25 @@ public class Hotel {
      *
      * @param gaesteListe the value to set
      */
-
     public void setGaesteListe(Vector<Gast> gaesteListe) {
         this.gaesteListe = gaesteListe;
     }
 
 
-    public Gast getGast(String schluesselwort){
+    /**
+     * Gets gast.
+     *
+     * @param schluesselwort the schluesselwort
+     * @return the gast
+     */
+    public Gast getGast(String schluesselwort) {
 
         for (Gast gast : gaesteListe) {
-            if (gast.getVorname().equals(schluesselwort)){
+            if (gast.getVorname().equals(schluesselwort)) {
                 return gast;
-            }else if (gast.getNachname().equals(schluesselwort)){
+            } else if (gast.getNachname().equals(schluesselwort)) {
                 return gast;
-            }else if (gast.getMobil().equals(schluesselwort)){
+            } else if (gast.getMobil().equals(schluesselwort)) {
                 return gast;
             }
         }
@@ -240,9 +239,16 @@ public class Hotel {
 
     }
 
-    public Gast getGast(String vorname, String nachname){
+    /**
+     * Gets gast.
+     *
+     * @param vorname  the vorname
+     * @param nachname the nachname
+     * @return the gast
+     */
+    public Gast getGast(String vorname, String nachname) {
         for (Gast gast : gaesteListe) {
-            if (gast.getVorname().equals(vorname) && gast.getNachname().equals(nachname)){
+            if (gast.getVorname().equals(vorname) && gast.getNachname().equals(nachname)) {
                 return gast;
             }
         }

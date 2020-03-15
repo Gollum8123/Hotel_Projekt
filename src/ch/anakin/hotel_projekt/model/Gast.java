@@ -22,14 +22,14 @@ public class Gast {
      */
 
     @FormParam("vorname")
-    
+
     @Pattern(regexp = "[A-Z][a-zA-Z]*")
-    @Size(min=1, max=50)
+    @Size(min = 1, max = 50)
     private String vorname;
 
     @FormParam("nachname")
 
-    @Size(min=1, max=50)
+    @Size(min = 1, max = 50)
     @Pattern(regexp = "[A-Z][a-zA-Z]*")
     private String nachname;
 
@@ -38,21 +38,21 @@ public class Gast {
     private String adresse;
 
     @FormParam("hausnummer")
-    
+
     @Pattern(regexp = "[0-9]*")
     private String hausnummer;
 
     @FormParam("plz")
-    
+
     private Integer plz;
 
     @FormParam("wohnort")
-    
+
     @Pattern(regexp = "[A-Za-z]*")
     private String wohnort;
 
     @FormParam("land")
-    
+
     @Pattern(regexp = "[A-Za-z]*")
     private String land;
 
@@ -68,16 +68,15 @@ public class Gast {
      * Validate international phone numbers in EPP format
      */
     @FormParam("mobil")
-    
+
     @Pattern(regexp = "[0-9]*")
     private String mobil;
 
     /**
-     * Regex check in set % get Geburtsdatum
+     *
      */
     @FormParam("geburtsdatum")
-    
-    //@Past
+    @Pattern(regexp = "[0-9]{2}+[0-9]{2}+[0-9]{4}")
     private String geburtsdatum;
 
 
@@ -85,24 +84,23 @@ public class Gast {
      * Java email validation permitted by RFC822
      */
     @FormParam("mail")
-    
+
     @Email
     private String mail;
 
     /**
      * Gästeattribute
-     * regex check in set % get ckeck_in & check_out
+     *
      */
 
     @FormParam("check_in")
-    
+
     private String check_in;
 
 
     @FormParam("check_out")
-    
-    private String check_out;
 
+    private String check_out;
 
 
     /**
@@ -119,7 +117,6 @@ public class Gast {
      *
      * @param vorname the value to set
      */
-
     public void setVorname(String vorname) {
         this.vorname = vorname;
     }
@@ -138,7 +135,6 @@ public class Gast {
      *
      * @param nachname the value to set
      */
-
     public void setNachname(String nachname) {
         this.nachname = nachname;
     }
@@ -157,7 +153,6 @@ public class Gast {
      *
      * @param adresse the value to set
      */
-
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
@@ -176,7 +171,6 @@ public class Gast {
      *
      * @param hausnummer the value to set
      */
-
     public void setHausnummer(String hausnummer) {
         this.hausnummer = hausnummer;
     }
@@ -195,7 +189,6 @@ public class Gast {
      *
      * @param plz the value to set
      */
-
     public void setPlz(Integer plz) {
         this.plz = plz;
     }
@@ -214,7 +207,6 @@ public class Gast {
      *
      * @param wohnort the value to set
      */
-
     public void setWohnort(String wohnort) {
         this.wohnort = wohnort;
     }
@@ -233,7 +225,6 @@ public class Gast {
      *
      * @param land the value to set
      */
-
     public void setLand(String land) {
         this.land = land;
     }
@@ -252,7 +243,6 @@ public class Gast {
      *
      * @param telefon the value to set
      */
-
     public void setTelefon(String telefon) {
         this.telefon = telefon;
     }
@@ -271,7 +261,6 @@ public class Gast {
      *
      * @param mobil the value to set
      */
-
     public void setMobil(String mobil) {
         this.mobil = mobil;
     }
@@ -281,7 +270,7 @@ public class Gast {
      *
      * @return value of geburtsdatum
      */
-    public String  getGeburtsdatum() {
+    public String getGeburtsdatum() {
         return geburtsdatum;
     }
 
@@ -290,18 +279,7 @@ public class Gast {
      *
      * @param geburtsdatum the value to set
      */
-
     public void setGeburtsdatum(String geburtsdatum) {
-/**
-        Date date = null;
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        try{
-            date = df.parse(geburtsdatum);
-
-        }catch (ParseException ex) {
-            System.out.println(ex);
-        }
- */
         this.geburtsdatum = geburtsdatum;
     }
 
@@ -319,7 +297,6 @@ public class Gast {
      *
      * @param mail the value to set
      */
-
     public void setMail(String mail) {
         this.mail = mail;
     }
@@ -334,29 +311,14 @@ public class Gast {
     }
 
 
-
     /**
      * Sets the check_in
      *
      * @param check_in the value to set
      */
-
-
     public void setCheck_in(String check_in) {
-    /**
-        Date date = null;
-        DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy_HH*mm*ss");
-        try{
-            date = df2.parse(check_in);
-
-        }catch (ParseException ex){
-            System.out.println(ex);
-        }
-    */
         this.check_in = check_in;
     }
-
-
 
 
     /**
@@ -373,24 +335,10 @@ public class Gast {
      *
      * @param check_out the value to set
      */
-
     public void setCheck_out(String check_out) {
-       /**
-        Date date = null;
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        try{
-            date = df.parse(check_out);
-
-        }catch (ParseException ex){
-            System.out.println(ex);
-        }
-        */
         this.check_out = check_out;
 
     }
-
-
-
 
 
 }
