@@ -2,6 +2,8 @@ package ch.anakin.hotel_projekt.model;
 
 import ch.anakin.hotel_projekt.data.DataHandler;
 
+import javax.xml.crypto.Data;
+import java.util.Date;
 import java.util.Vector;
 
 /**
@@ -22,7 +24,7 @@ public class Hotel {
     private int plz;
     private String wohnort;
     private String land;
-    private int baujahr;
+    private Date baujahr;
 
 
     private String typ;
@@ -170,7 +172,7 @@ public class Hotel {
      *
      * @return value of baujahr
      */
-    public int getBaujahr() {
+    public Date getBaujahr() {
         return baujahr;
     }
 
@@ -180,7 +182,7 @@ public class Hotel {
      * @param baujahr the value to set
      */
 
-    public void setBaujahr(int baujahr) {
+    public void setBaujahr(Date baujahr) {
         this.baujahr = baujahr;
     }
 

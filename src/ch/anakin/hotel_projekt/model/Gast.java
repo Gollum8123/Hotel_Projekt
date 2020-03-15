@@ -78,7 +78,7 @@ public class Gast {
     @FormParam("geburtsdatum")
     
     //@Past
-    private Date geburtsdatum;
+    private String geburtsdatum;
 
 
     /**
@@ -96,12 +96,12 @@ public class Gast {
 
     @FormParam("check_in")
     
-    private Date check_in;
+    private String check_in;
 
 
     @FormParam("check_out")
     
-    private Date check_out;
+    private String check_out;
 
 
 
@@ -281,7 +281,7 @@ public class Gast {
      *
      * @return value of geburtsdatum
      */
-    public Date  getGeburtsdatum() {
+    public String  getGeburtsdatum() {
         return geburtsdatum;
     }
 
@@ -292,7 +292,7 @@ public class Gast {
      */
 
     public void setGeburtsdatum(String geburtsdatum) {
-
+/**
         Date date = null;
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         try{
@@ -301,7 +301,8 @@ public class Gast {
         }catch (ParseException ex) {
             System.out.println(ex);
         }
-        this.geburtsdatum = date;
+ */
+        this.geburtsdatum = geburtsdatum;
     }
 
     /**
@@ -328,7 +329,7 @@ public class Gast {
      *
      * @return value of check_in
      */
-    public Date getCheck_in() {
+    public String getCheck_in() {
         return check_in;
     }
 
@@ -340,28 +341,30 @@ public class Gast {
      * @param check_in the value to set
      */
 
-    public void setCheck_in(String check_in) {
 
+    public void setCheck_in(String check_in) {
+    /**
         Date date = null;
-        DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy_HH*mm*ss");
         try{
             date = df2.parse(check_in);
 
         }catch (ParseException ex){
             System.out.println(ex);
         }
-        this.check_in = date;
-
+    */
+        this.check_in = check_in;
     }
 
-    public void setCheck_in(Date date){this.check_in = check_in;}
+
+
 
     /**
      * Gets the check_out
      *
      * @return value of check_out
      */
-    public Date getCheck_out() {
+    public String getCheck_out() {
         return check_out;
     }
 
@@ -372,6 +375,7 @@ public class Gast {
      */
 
     public void setCheck_out(String check_out) {
+       /**
         Date date = null;
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         try{
@@ -380,7 +384,8 @@ public class Gast {
         }catch (ParseException ex){
             System.out.println(ex);
         }
-        this.check_out = date;
+        */
+        this.check_out = check_out;
 
     }
 
