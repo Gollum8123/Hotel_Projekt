@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response;
  * <p>
  * Bookshelf
  *
- * @author TODO
+ * @author Anakin Krischler
  */
 @Path("test")
 public class TestService {

@@ -1,6 +1,7 @@
 package ch.anakin.hotel_projekt.data;
 
 import ch.anakin.hotel_projekt.model.Gast;
+import ch.anakin.hotel_projekt.model.User;
 import ch.anakin.hotel_projekt.service.Config;
 
 import java.io.*;
@@ -166,6 +167,51 @@ public class DataHandler {
      */
     public static void setGastVector(Vector<Gast> gastVector) {
         DataHandler.gastVector = gastVector;
+    }
+
+    public static User readUser(String username, String password) {
+
+        BufferedReader bufferedReader;
+        FileReader fileReader;
+        try {
+            String bookPath = Config.getProperty("userFile");
+            fileReader = new FileReader(bookPath);
+            bufferedReader = new BufferedReader(fileReader);
+
+        } catch (FileNotFoundException fileEx) {
+            fileEx.printStackTrace();
+            throw new RuntimeException();
+        }
+
+        try {
+            String line;
+            User user = new User();
+            while ((line = bufferedReader.readLine()) != null && user.getUserRole().equals("guest" )) {
+                String[] values = line.split(";");
+
+                if (username.equals(values[0]) && password.equals(values[1])){
+                    user.setUserRole(values[2]);
+                }
+
+            }
+            return user;
+        } catch (IOException ioEx) {
+            ioEx.printStackTrace();
+            throw new RuntimeException();
+        } finally {
+            try {
+                if (bufferedReader != null) {
+                    bufferedReader.close();
+                }
+                if (fileReader != null) {
+                    fileReader.close();
+                }
+            } catch (IOException ioEx) {
+                ioEx.printStackTrace();
+                throw new RuntimeException();
+            }
+        }
+
     }
 
 }

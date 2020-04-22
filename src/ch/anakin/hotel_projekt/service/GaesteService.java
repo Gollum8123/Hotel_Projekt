@@ -32,12 +32,22 @@ public class GaesteService {
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public Response listGaeste(){
+    public Response listGaeste(
+            @CookieParam("userRole") String userRole
+    ){
+        Vector<Gast> gastVector =null;
+        int httpStatus;
+        if (userRole == null || (!userRole.equals("admin") && !userRole.equals("user"))){
+            httpStatus = 403;
+        }else{
+            httpStatus = 200;
+            gastVector = new Hotel().getGaesteListe();
+        }
 
-        Vector<Gast> gastVector = new Hotel().getGaesteListe();
+
 
         Response response = Response
-                .status(200)
+                .status(httpStatus)
                 .entity(gastVector)
                 .build();
         return response;
@@ -54,21 +64,25 @@ public class GaesteService {
     @Produces(MediaType.APPLICATION_JSON)
 
     public Response searchGast(
+            @CookieParam("userRole") String userRole,
             @QueryParam("schluesselwort") String schluesselwort
     ) {
         Gast gast = null;
         int hattpStatus;
+        if(userRole == null || (!userRole.equals("admin") && !userRole.equals("user"))){
+           hattpStatus = 403;
+        }else {
+            try {
+                gast = new Hotel().getGast(schluesselwort);
+                if (gast != null) {
+                    hattpStatus = 200;
+                } else {
+                    hattpStatus = 404;
+                }
 
-        try{
-            gast = new Hotel().getGast(schluesselwort);
-            if (gast !=null){
-                hattpStatus = 200;
-            }else {
-                hattpStatus = 404;
+            } catch (IllegalArgumentException argEy) {
+                hattpStatus = 400;
             }
-
-        }catch (IllegalArgumentException argEy){
-            hattpStatus = 400;
         }
 
         Response response = Response
@@ -90,14 +104,20 @@ public class GaesteService {
     @Produces(MediaType.TEXT_PLAIN)
 
     public Response createGast(
+        @CookieParam("userRole") String userRole,
         @Valid @BeanParam Gast gast
     ){
-        int httpStatus = 200;
-        Hotel hotel = new Hotel();
-        hotel.getGaesteListe().add(gast);
+        int httpStatus;
+        Hotel hotel = null;
+        if ((userRole == null || (!userRole.equals("admin") && !userRole.equals("user")))){
+            httpStatus = 403;
+        }else {
+            httpStatus = 200;
+            hotel = new Hotel();
+            hotel.getGaesteListe().add(gast);
 
-        DataHandler.writeGaeste(hotel.getGaesteListe());
-
+            DataHandler.writeGaeste(hotel.getGaesteListe());
+        }
         Response response = Response
                 .status(httpStatus)
                 .entity("")
@@ -116,21 +136,26 @@ public class GaesteService {
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)
     public Response deleteBook(
+            @CookieParam("userRole") String userRole,
             @QueryParam("schluesselwort") String schluesselwort
     ) {
         int httpStatus;
-        try {
-            Hotel hotel = new Hotel();
-            Gast gast  = hotel.getGast(schluesselwort);
-            if (gast != null) {
-                httpStatus = 200;
-                hotel.getGaesteListe().remove(gast);
-                DataHandler.writeGaeste(hotel.getGaesteListe());
-            } else {
-                httpStatus = 404;
+        if ((userRole == null || !userRole.equals("admin"))){
+            httpStatus = 403;
+        }else {
+            try {
+                Hotel hotel = new Hotel();
+                Gast gast = hotel.getGast(schluesselwort);
+                if (gast != null) {
+                    httpStatus = 200;
+                    hotel.getGaesteListe().remove(gast);
+                    DataHandler.writeGaeste(hotel.getGaesteListe());
+                } else {
+                    httpStatus = 404;
+                }
+            } catch (IllegalArgumentException argEx) {
+                httpStatus = 400;
             }
-        } catch (IllegalArgumentException argEx) {
-            httpStatus = 400;
         }
 
         Response response = Response
@@ -151,23 +176,28 @@ public class GaesteService {
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateBook(
+            @CookieParam("userRole") String userRole,
             @Valid @BeanParam Gast gast
 
     ) {
         int httpStatus;
-        try {
-            Hotel hotel = new Hotel();
-            hotel.getGaesteListe().remove(hotel.getGast(gast.getVorname()));
-            hotel.getGaesteListe().add(gast);
-            if (gast != null) {
-                httpStatus = 200;
+        if ((userRole == null || !userRole.equals("admin"))){
+            httpStatus = 403;
+        }else {
+            try {
+                Hotel hotel = new Hotel();
+                hotel.getGaesteListe().remove(hotel.getGast(gast.getVorname()));
+                hotel.getGaesteListe().add(gast);
+                if (gast != null) {
+                    httpStatus = 200;
 
-                DataHandler.writeGaeste(hotel.getGaesteListe());
-            } else {
-                httpStatus = 404;
+                    DataHandler.writeGaeste(hotel.getGaesteListe());
+                } else {
+                    httpStatus = 404;
+                }
+            } catch (IllegalArgumentException argEx) {
+                httpStatus = 400;
             }
-        } catch (IllegalArgumentException argEx) {
-            httpStatus = 400;
         }
 
         Response response = Response
