@@ -65,7 +65,7 @@ public class HotelService {
      * @return Response with publisher-object
      */
     @GET
-    @Path("read")
+    @Path("search")
     @Produces(MediaType.APPLICATION_JSON)
     public Response readPublisher(
             @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
@@ -122,7 +122,6 @@ public class HotelService {
             httpStatus = 200;
 
             hotel.setHotelUUID(UUID.randomUUID().toString());
-
 
             Map<String, Hotel> hotelMap = DataHandler.getHotelMap();
 
@@ -193,4 +192,46 @@ public class HotelService {
                 .build();
         return response;
     }
+
+    @DELETE
+    @Path("delete")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response deleteBook(
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+            @QueryParam("uuid") String hotelUUID,
+
+            @CookieParam("userRole") String userRole
+    ) {
+        int httpStatus;
+        if (userRole != null && userRole.equals("admin")) {
+
+            Map<String, Hotel> hotelMap = DataHandler.getHotelMap();
+            Hotel hotel = hotelMap.get(hotelUUID);
+            if (hotel != null) {
+                httpStatus = 200;
+                hotelMap.remove(hotelUUID);
+                DataHandler.wirteHotel(hotelMap);
+            } else {
+                httpStatus = 404;
+            }
+        } else {
+            httpStatus = 403;
+        }
+        NewCookie cookie = new NewCookie(
+                "userRole",
+                userRole,
+                "/",
+                "",
+                "Login-Cookie",
+                600,
+                false
+        );
+        Response response = Response
+                .status(httpStatus)
+                .entity("")
+                .cookie(cookie)
+                .build();
+        return response;
+    }
+
 }

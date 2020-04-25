@@ -33,12 +33,12 @@ public class Gast {
     private String nachname;
 
     @FormParam("adresse")
+    @Size(min=1, max=50)
     @Pattern(regexp = "[A-Za-z]*")
     private String adresse;
 
     @FormParam("hausnummer")
-
-    @Pattern(regexp = "[0-9]*")
+    @Size(min=1, max=6)
     private String hausnummer;
 
     @FormParam("plz")
@@ -60,7 +60,7 @@ public class Gast {
      */
     @FormParam("telefon")
 
-    @Pattern(regexp = "[0-9]*")
+    @Size(min=7, max=40)
     private String telefon;
 
     /**
@@ -68,14 +68,14 @@ public class Gast {
      */
     @FormParam("mobil")
 
-    @Pattern(regexp = "[0-9]*")
+    @Size(min=7, max=40)
     private String mobil;
 
     /**
      *
      */
     @FormParam("geburtsdatum")
-   // @Pattern(regexp = "[0-9]{2}+[0-9]{2}+[0-9]{4}")
+    @Pattern(regexp = "[0-9]{2}.[0-9]{2}.[0-9]{4}")
     private String geburtsdatum;
 
 

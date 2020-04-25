@@ -17,7 +17,7 @@ import java.util.Set;
 @ApplicationPath("/resource")
 
 public class Config extends Application {
-    private static final String PROPERTIES_PATH = "/home/bzz/webapp/gast.properties";
+    private static final String PROPERTIES_PATH = "/home/bzz/IdeaProjects/Hotel_Projekt/testing/hotel.properties";
     private static Properties properties = null;
 
     /**

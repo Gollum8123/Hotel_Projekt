@@ -1,8 +1,11 @@
 package ch.anakin.hotel_projekt.model;
 
 import ch.anakin.hotel_projekt.data.DataHandler;
+import com.sun.xml.internal.ws.util.StringUtils;
 
+import javax.validation.constraints.*;
 import javax.ws.rs.FormParam;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -17,35 +20,56 @@ import java.util.Map;
  */
 public class Hotel {
 
+    @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
     @FormParam("hotelUUID")
     private String hotelUUID;
 
+
     @FormParam("name")
+    @NotEmpty
+    @Size(min=1, max=50)
     private String name;
 
-    @FormParam("Sterne")
+    @FormParam("sterne")
+    @Min(value = 0)
+    @Max(value = 5)
     private Integer sterne;
 
+    @Size(min=1, max=50)
+    @Pattern(regexp = "[A-Za-z]*")
     @FormParam("adresse")
     private String adresse;
 
+    @Size(min=1, max=6)
     @FormParam("hausnummer")
     private String hausnummer;
 
+    @Size(min=1, max=15)
     @FormParam("plz")
     private Integer plz;
 
-    @FormParam("wohnort")
+    @Size(min=1, max=15)
+    @Pattern(regexp = "[a-zA-Z]*")
+    @FormParam("ort")
     private String wohnort;
 
+    @Size(min=1, max=56)
+    @Pattern(regexp = "[a-zA-Z]*")
     @FormParam("land")
     private String land;
 
+    @Pattern(regexp = "\\d{4}")
     @FormParam("baujahr")
     private String baujahr;
 
+
+    private Map<String, Gast> gaesteListe = new HashMap<>();
+
+    @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
     @FormParam("gaesteListe")
-    private Map<String, Gast> gaesteListe;
+    private String gaesteListeString;
+
+
 
 
 
@@ -241,7 +265,27 @@ public class Hotel {
         this.gaesteListe = gaesteListe;
     }
 
+    public void addGast(String s, Gast gast){
+        gaesteListe.put(s,gast);
+    }
 
+    /**
+     * Gets the gaesteListeString
+     *
+     * @return value of gaesteListeString
+     */
+    public String getGaesteListeString() {
+        return gaesteListeString;
+    }
 
+    /**
+     * Sets the gaesteListeString
+     *
+     * @param gaesteListeString the value to set
+     */
 
+    public void setGaesteListeString(String gaesteListeString) {
+        this.gaesteListeString = gaesteListeString;
+
+    }
 }

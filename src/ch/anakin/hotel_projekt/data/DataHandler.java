@@ -10,6 +10,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 /**
  * data handler for reading and writing the csv files
@@ -48,8 +49,8 @@ public class DataHandler {
         BufferedReader bufferedReader;
         FileReader fileReader;
         try {
-            String bookPath = Config.getProperty("gaesteFile");
-            fileReader = new FileReader(bookPath);
+            String gastPath = ch.anakin.hotel_projekt.service.Config.getProperty("gaesteFile");
+            fileReader = new FileReader(gastPath);
             bufferedReader = new BufferedReader(fileReader);
 
         } catch (FileNotFoundException fileEx) {
@@ -105,8 +106,8 @@ public class DataHandler {
         BufferedReader bufferedReader;
         FileReader fileReader;
         try {
-            String bookPath = Config.getProperty("hotelFile");
-            fileReader = new FileReader(bookPath);
+            String hotelPath = ch.anakin.hotel_projekt.service.Config.getProperty("hotelFile");
+            fileReader = new FileReader(hotelPath);
             bufferedReader = new BufferedReader(fileReader);
 
         } catch (FileNotFoundException fileEx) {
@@ -117,11 +118,10 @@ public class DataHandler {
         try {
             String line;
             Hotel hotel = null;
-            Map<String,Gast> gasteMap = null;
             while ((line = bufferedReader.readLine()) != null) {
                 hotel = new Hotel();
-                gasteMap = new HashMap<>();
                 String[] values = line.split(";");
+                String[] gaeste = values[9].split(",");
                 hotel.setHotelUUID(values[0]);
                 hotel.setName(values[1]);
                 hotel.setSterne(integerTranslator.parseInt(values[2]));
@@ -131,17 +131,22 @@ public class DataHandler {
                 hotel.setWohnort(values[6]);
                 hotel.setLand(values[7]);
                 hotel.setBaujahr(values[8]);
-                DataHandler.readGaeste();
 
+                String uuidPlatzhalter = "";
+                for (String gast : gaeste) {
+                    Map<String, Gast> gastMap = DataHandler.getGastMap();
 
-                for (String string: getGastMap().keySet()) {
-                    for (int i = 9; i != values.length; i++) {
-                        if(string.equals(values[i])){
-                            gasteMap.put(string, getGastMap().get(string));
-                        }
+                    Map<String, Gast> result = gastMap.entrySet()
+                            .stream()
+                            .filter(entry -> entry.getKey().contains(gast))
+                            .collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue()));
+
+                    for(Map.Entry<String, Gast> entry: result.entrySet()){
+                        hotel.addGast(entry.getKey(), entry.getValue());
+                        uuidPlatzhalter += entry.getKey() + ",";
                     }
                 }
-                hotel.setGaesteListe(gasteMap);
+                hotel.setGaesteListeString(uuidPlatzhalter.substring(0,uuidPlatzhalter.length()-1));
 
                 hotelMap.put(values[0], hotel);
 
@@ -175,8 +180,8 @@ public class DataHandler {
         FileOutputStream fileOutputStream = null;
 
         try {
-            String bookPath = Config.getProperty("gaesteFile");
-            fileOutputStream = new FileOutputStream(bookPath);
+            String gastPath = ch.anakin.hotel_projekt.service.Config.getProperty("gaesteFile");
+            fileOutputStream = new FileOutputStream(gastPath);
             writer = new BufferedWriter(new OutputStreamWriter(fileOutputStream, "utf-8"));
 
             for (Map.Entry<String,Gast> gastEntry : gastMap.entrySet()) {
@@ -225,13 +230,15 @@ public class DataHandler {
         FileOutputStream fileOutputStream = null;
 
         try {
-            String bookPath = Config.getProperty("hotelFile");
-            fileOutputStream = new FileOutputStream(bookPath);
+            String hotelPath = ch.anakin.hotel_projekt.service.Config.getProperty("hotelFile");
+            fileOutputStream = new FileOutputStream(hotelPath);
             writer = new BufferedWriter(new OutputStreamWriter(fileOutputStream, "utf-8"));
 
             for (Map.Entry<String,Hotel> hotelEingabe : hotelMap.entrySet()) {
 
                 Hotel hotel = hotelEingabe.getValue();
+
+
                 String contents = String.join(";",
                         hotel.getHotelUUID(),
                         hotel.getName(),
@@ -242,7 +249,7 @@ public class DataHandler {
                         hotel.getWohnort(),
                         hotel.getLand(),
                         hotel.getBaujahr(),
-                        hotel.toString()
+                        hotel.getGaesteListeString()
                 );
                 writer.write(contents + '\n');
             }
