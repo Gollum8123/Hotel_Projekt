@@ -31,6 +31,7 @@ public class Config extends Application {
         providers.add(TestService.class);
         providers.add(GaesteService.class);
         providers.add(UserService.class);
+        providers.add(HotelService.class);
 
         return providers;
     }

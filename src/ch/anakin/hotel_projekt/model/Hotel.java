@@ -2,9 +2,9 @@ package ch.anakin.hotel_projekt.model;
 
 import ch.anakin.hotel_projekt.data.DataHandler;
 
-import javax.xml.crypto.Data;
-import java.util.Date;
-import java.util.Vector;
+import javax.ws.rs.FormParam;
+import java.util.Map;
+
 
 /**
  * short description
@@ -17,24 +17,56 @@ import java.util.Vector;
  */
 public class Hotel {
 
+    @FormParam("hotelUUID")
+    private String hotelUUID;
+
+    @FormParam("name")
     private String name;
-    private int Sterne;
+
+    @FormParam("Sterne")
+    private Integer sterne;
+
+    @FormParam("adresse")
     private String adresse;
+
+    @FormParam("hausnummer")
     private String hausnummer;
-    private int plz;
+
+    @FormParam("plz")
+    private Integer plz;
+
+    @FormParam("wohnort")
     private String wohnort;
+
+    @FormParam("land")
     private String land;
-    private Date baujahr;
+
+    @FormParam("baujahr")
+    private String baujahr;
+
+    @FormParam("gaesteListe")
+    private Map<String, Gast> gaesteListe;
 
 
-    private String typ;
-    private Vector<Gast> gaesteListe;
+
 
     /**
-     * Instantiates a new Hotel.
+     * Gets the hotelUUID
+     *
+     * @return value of hotelUUID
      */
-    public Hotel() {
-        this.gaesteListe = DataHandler.getGastVector();
+    public String getHotelUUID() {
+        return hotelUUID;
+    }
+
+    /**
+     * Sets the hotelUUID
+     *
+     * @param hotelUUID the value to set
+     */
+
+    public void setHotelUUID(String hotelUUID) {
+        this.hotelUUID = hotelUUID;
     }
 
     /**
@@ -51,6 +83,7 @@ public class Hotel {
      *
      * @param name the value to set
      */
+
     public void setName(String name) {
         this.name = name;
     }
@@ -60,8 +93,8 @@ public class Hotel {
      *
      * @return value of Sterne
      */
-    public int getSterne() {
-        return Sterne;
+    public Integer getSterne() {
+        return sterne;
     }
 
     /**
@@ -69,8 +102,9 @@ public class Hotel {
      *
      * @param sterne the value to set
      */
-    public void setSterne(int sterne) {
-        Sterne = sterne;
+
+    public void setSterne(Integer sterne) {
+        this.sterne = sterne;
     }
 
     /**
@@ -87,6 +121,7 @@ public class Hotel {
      *
      * @param adresse the value to set
      */
+
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
@@ -105,6 +140,7 @@ public class Hotel {
      *
      * @param hausnummer the value to set
      */
+
     public void setHausnummer(String hausnummer) {
         this.hausnummer = hausnummer;
     }
@@ -114,7 +150,7 @@ public class Hotel {
      *
      * @return value of plz
      */
-    public int getPlz() {
+    public Integer getPlz() {
         return plz;
     }
 
@@ -123,7 +159,8 @@ public class Hotel {
      *
      * @param plz the value to set
      */
-    public void setPlz(int plz) {
+
+    public void setPlz(Integer plz) {
         this.plz = plz;
     }
 
@@ -141,6 +178,7 @@ public class Hotel {
      *
      * @param wohnort the value to set
      */
+
     public void setWohnort(String wohnort) {
         this.wohnort = wohnort;
     }
@@ -159,6 +197,7 @@ public class Hotel {
      *
      * @param land the value to set
      */
+
     public void setLand(String land) {
         this.land = land;
     }
@@ -168,7 +207,7 @@ public class Hotel {
      *
      * @return value of baujahr
      */
-    public Date getBaujahr() {
+    public String getBaujahr() {
         return baujahr;
     }
 
@@ -177,34 +216,18 @@ public class Hotel {
      *
      * @param baujahr the value to set
      */
-    public void setBaujahr(Date baujahr) {
+
+    public void setBaujahr(String baujahr) {
         this.baujahr = baujahr;
     }
 
-    /**
-     * Gets the typ
-     *
-     * @return value of typ
-     */
-    public String getTyp() {
-        return typ;
-    }
-
-    /**
-     * Sets the typ
-     *
-     * @param typ the value to set
-     */
-    public void setTyp(String typ) {
-        this.typ = typ;
-    }
 
     /**
      * Gets the gaesteListe
      *
      * @return value of gaesteListe
      */
-    public Vector<Gast> getGaesteListe() {
+    public Map<String, Gast> getGaesteListe() {
         return gaesteListe;
     }
 
@@ -213,47 +236,12 @@ public class Hotel {
      *
      * @param gaesteListe the value to set
      */
-    public void setGaesteListe(Vector<Gast> gaesteListe) {
+
+    public void setGaesteListe(Map<String, Gast> gaesteListe) {
         this.gaesteListe = gaesteListe;
     }
 
 
-    /**
-     * Gets gast.
-     *
-     * @param schluesselwort the schluesselwort
-     * @return the gast
-     */
-    public Gast getGast(String schluesselwort) {
 
-        for (Gast gast : gaesteListe) {
-            if (gast.getVorname().equals(schluesselwort)) {
-                return gast;
-            } else if (gast.getNachname().equals(schluesselwort)) {
-                return gast;
-            } else if (gast.getMobil().equals(schluesselwort)) {
-                return gast;
-            }
-        }
-        return null;
-
-    }
-
-    /**
-     * Gets gast.
-     *
-     * @param vorname  the vorname
-     * @param nachname the nachname
-     * @return the gast
-     */
-    public Gast getGast(String vorname, String nachname) {
-        for (Gast gast : gaesteListe) {
-            if (gast.getVorname().equals(vorname) && gast.getNachname().equals(nachname)) {
-                return gast;
-            }
-        }
-        return null;
-
-    }
 
 }

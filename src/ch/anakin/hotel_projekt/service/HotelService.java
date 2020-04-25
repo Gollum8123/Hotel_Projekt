@@ -1,7 +1,6 @@
 package ch.anakin.hotel_projekt.service;
 
 import ch.anakin.hotel_projekt.data.DataHandler;
-import ch.anakin.hotel_projekt.model.Gast;
 import ch.anakin.hotel_projekt.model.Hotel;
 
 import javax.validation.Valid;
@@ -12,40 +11,33 @@ import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 import java.util.Map;
 import java.util.UUID;
-import java.util.Vector;
 
 /**
  * short description
  * <p>
  * Hotel_Projekt
  *
- * @author Anakin Kirschler
+ * @author TODO
  * @version 1.0
- * @since 12.03.20
+ * @since 22.04.20
  */
-@Path("gast")
-public class GaesteService {
+@Path("hotel")
+public class HotelService {
 
-
-    /**
-     * List gaeste response.
-     *
-     * @return the response
-     */
     @GET
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public Response listBooks(
+    public Response listPublisher(
             @CookieParam("userRole") String userRole
     ) {
-        Map<String, Gast> gastMap = null;
+        Map<String, Hotel> hotellist = null;
         int httpStatus;
         if (userRole == null || userRole.equals("guest")) {
             httpStatus = 403;
         } else {
             httpStatus = 200;
-            gastMap = DataHandler.getGastMap();
+            hotellist = DataHandler.getHotelMap();
         }
         NewCookie cookie = new NewCookie(
                 "userRole",
@@ -58,36 +50,35 @@ public class GaesteService {
         );
         Response response = Response
                 .status(httpStatus)
-                .entity(gastMap)
+                .entity(hotellist)
                 .cookie(cookie)
                 .build();
         return response;
 
     }
+
     /**
-     * Search gast response.
+     * reads a publisher identified by its uuid
      *
-     * @param gastUUID the gastUUID
-     * @return the response
+     * @param hotelUUID the hotelUUID to be searched
+     * @param userRole      the role of the current user
+     * @return Response with publisher-object
      */
     @GET
-    @Path("search")
+    @Path("read")
     @Produces(MediaType.APPLICATION_JSON)
-
-    public Response readBook(
+    public Response readPublisher(
             @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
-            @QueryParam("uuid") String gastUUID,
-
-            @CookieParam("userRole") String userRole
-    ) {
-        Gast gast = null;
+            @QueryParam("uuid") String hotelUUID,
+            @CookieParam("userRole") String userRole) {
+        Hotel hotel = null;
         int httpStatus;
         if (userRole == null || userRole.equals("guest")) {
             httpStatus = 403;
         } else {
-            gast = DataHandler.getGastMap().get(gastUUID);
+            hotel = DataHandler.getHotelMap().get(hotelUUID);
 
-            if (gast != null) {
+            if (hotel != null) {
                 httpStatus = 200;
             } else {
                 httpStatus = 404;
@@ -104,23 +95,25 @@ public class GaesteService {
         );
         Response response = Response
                 .status(httpStatus)
-                .entity(gast)
+                .entity(hotel)
                 .cookie(cookie)
                 .build();
         return response;
+
     }
 
     /**
-     * Create gast response.
+     * creates a new publisher
      *
-     * @param gast the gast
-     * @return the response
+     * @param hotel a valid hotel
+     * @param userRole  the role of the current user
+     * @return Response
      */
     @POST
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
     public Response createBook(
-            @Valid @BeanParam Gast gast,
+            @Valid @BeanParam Hotel hotel,
             @CookieParam("userRole") String userRole
     ) {
         int httpStatus;
@@ -128,12 +121,13 @@ public class GaesteService {
 
             httpStatus = 200;
 
-            gast.setGastUUID(UUID.randomUUID().toString());
-            Map<String, Gast> gastMap = DataHandler.getGastMap();
+            hotel.setHotelUUID(UUID.randomUUID().toString());
 
-            gastMap.put(gast.getGastUUID(), gast);
-            DataHandler.writeGaeste(gastMap);
 
+            Map<String, Hotel> hotelMap = DataHandler.getHotelMap();
+
+            hotelMap.put(hotel.getHotelUUID(), hotel);
+            DataHandler.wirteHotel(hotelMap);
 
         } else {
             httpStatus = 403;
@@ -156,74 +150,26 @@ public class GaesteService {
     }
 
     /**
-     * Delete book response.
+     * updates an existing publisher
      *
-     * @param gastUUID the gastUUID
-     * @return the response
-     */
-    @DELETE
-    @Path("delete")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response deleteBook(
-            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
-            @QueryParam("uuid") String gastUUID,
-
-            @CookieParam("userRole") String userRole
-    ) {
-        int httpStatus;
-        if (userRole != null && userRole.equals("admin")) {
-
-            Map<String, Gast> gastMap = DataHandler.getGastMap();
-            Gast gast = gastMap.get(gastUUID);
-            if (gast != null) {
-                httpStatus = 200;
-                gastMap.remove(gastUUID);
-                DataHandler.writeGaeste(gastMap);
-            } else {
-                httpStatus = 404;
-            }
-        } else {
-            httpStatus = 403;
-        }
-        NewCookie cookie = new NewCookie(
-                "userRole",
-                userRole,
-                "/",
-                "",
-                "Login-Cookie",
-                600,
-                false
-        );
-        Response response = Response
-                .status(httpStatus)
-                .entity("")
-                .cookie(cookie)
-                .build();
-        return response;
-    }
-
-
-    /**
-     * Update book response.
-     *
-     * @param gast          the gast
-     * @return the response
+     * @param hotel a valid hotel
+     * @param userRole  the role of the current user
+     * @return Response
      */
     @PUT
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateBook(
-            @Valid @BeanParam Gast gast,
-
+            @Valid @BeanParam Hotel hotel,
             @CookieParam("userRole") String userRole
     ) {
         int httpStatus;
         if (userRole != null && userRole.equals("admin")) {
 
-            Map<String, Gast> gastMap = DataHandler.getGastMap();
-            if (gastMap.containsKey(gast.getGastUUID())) {
-                gastMap.put(gast.getGastUUID(), gast);
-                DataHandler.writeGaeste(gastMap);
+            Map<String, Hotel> hotelMap = DataHandler.getHotelMap();
+            if (hotelMap.containsKey(hotel.getHotelUUID())) {
+                hotelMap.put(hotel.getHotelUUID(), hotel);
+                DataHandler.wirteHotel(hotelMap);
                 httpStatus = 200;
             } else {
                 httpStatus = 404;
@@ -248,7 +194,3 @@ public class GaesteService {
         return response;
     }
 }
-
-
-
-

@@ -25,8 +25,8 @@ public class UserService {
     @Path("login")
     @Produces(MediaType.TEXT_PLAIN)
     public Response login(
-            @FormParam("benutzername") String username,
-            @FormParam("passwort") String password
+            @FormParam("username") String username,
+            @FormParam("password") String password
     ){
         int httpStautus;
         User user = DataHandler.readUser(username,password);

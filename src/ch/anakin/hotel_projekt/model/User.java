@@ -15,7 +15,26 @@ public class User {
     private String userRole;
 
     public User() {
-        userRole = "user";
+        userRole = "guest";
+    }
+
+    /**
+     * Gets the username
+     *
+     * @return value of username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * Sets the username
+     *
+     * @param username the value to set
+     */
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**

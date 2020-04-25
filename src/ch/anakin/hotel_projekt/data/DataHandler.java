@@ -1,10 +1,14 @@
 package ch.anakin.hotel_projekt.data;
 
 import ch.anakin.hotel_projekt.model.Gast;
+import ch.anakin.hotel_projekt.model.Hotel;
 import ch.anakin.hotel_projekt.model.User;
 import ch.anakin.hotel_projekt.service.Config;
 
+
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 /**
@@ -14,7 +18,9 @@ import java.util.Vector;
  */
 public class DataHandler {
     private static final DataHandler instance = new DataHandler();
-    private static Vector<Gast> gastVector = new Vector<>();
+    private static Map<String,Gast> gastMap = new HashMap<>();
+    private static Map<String, Hotel> hotelMap = new HashMap<>();
+    private static Integer integerTranslator = null;
 
 
     /**
@@ -57,21 +63,22 @@ public class DataHandler {
             while ((line = bufferedReader.readLine()) != null) {
                 gast = new Gast();
                 String[] values = line.split(";");
-                gast.setVorname(values[0]);
-                gast.setNachname(values[1]);
-                gast.setAdresse(values[2]);
-                gast.setHausnummer(values[3]);
-                gast.setPlz(new Integer(values[4]));
-                gast.setWohnort(values[4]);
-                gast.setLand(values[6]);
-                gast.setTelefon(values[7]);
-                gast.setMobil(values[8]);
-                gast.setGeburtsdatum(values[9]);
-                gast.setMail(values[10]);
-                gast.setCheck_in(values[11]);
-                gast.setCheck_out(values[12]);
+                gast.setGastUUID(values[0]);
+                gast.setVorname(values[1]);
+                gast.setNachname(values[2]);
+                gast.setAdresse(values[3]);
+                gast.setHausnummer(values[4]);
+                gast.setPlz(new Integer(values[5]));
+                gast.setWohnort(values[6]);
+                gast.setLand(values[7]);
+                gast.setTelefon(values[8]);
+                gast.setMobil(values[9]);
+                gast.setGeburtsdatum(values[10]);
+                gast.setMail(values[11]);
+                gast.setCheck_in(values[12]);
+                gast.setCheck_out(values[13]);
 
-                gastVector.add(gast);
+                gastMap.put(values[0], gast);
 
             }
         } catch (IOException ioEx) {
@@ -92,12 +99,78 @@ public class DataHandler {
         }
     }
 
+
+    public static void readHotel() {
+
+        BufferedReader bufferedReader;
+        FileReader fileReader;
+        try {
+            String bookPath = Config.getProperty("hotelFile");
+            fileReader = new FileReader(bookPath);
+            bufferedReader = new BufferedReader(fileReader);
+
+        } catch (FileNotFoundException fileEx) {
+            fileEx.printStackTrace();
+            throw new RuntimeException();
+        }
+
+        try {
+            String line;
+            Hotel hotel = null;
+            Map<String,Gast> gasteMap = null;
+            while ((line = bufferedReader.readLine()) != null) {
+                hotel = new Hotel();
+                gasteMap = new HashMap<>();
+                String[] values = line.split(";");
+                hotel.setHotelUUID(values[0]);
+                hotel.setName(values[1]);
+                hotel.setSterne(integerTranslator.parseInt(values[2]));
+                hotel.setAdresse(values[3]);
+                hotel.setHausnummer(values[4]);
+                hotel.setPlz(integerTranslator.parseInt(values[5]));
+                hotel.setWohnort(values[6]);
+                hotel.setLand(values[7]);
+                hotel.setBaujahr(values[8]);
+                DataHandler.readGaeste();
+
+
+                for (String string: getGastMap().keySet()) {
+                    for (int i = 9; i != values.length; i++) {
+                        if(string.equals(values[i])){
+                            gasteMap.put(string, getGastMap().get(string));
+                        }
+                    }
+                }
+                hotel.setGaesteListe(gasteMap);
+
+                hotelMap.put(values[0], hotel);
+
+            }
+        } catch (IOException ioEx) {
+            ioEx.printStackTrace();
+            throw new RuntimeException();
+        } finally {
+            try {
+                if (bufferedReader != null) {
+                    bufferedReader.close();
+                }
+                if (fileReader != null) {
+                    fileReader.close();
+                }
+            } catch (IOException ioEx) {
+                ioEx.printStackTrace();
+                throw new RuntimeException();
+            }
+        }
+    }
+
+
     /**
      * Write books.
      *
-     * @param gastVector the gast vector
+     * @param gastMap the gast Map
      */
-    public static void writeGaeste(Vector<Gast> gastVector) {
+    public static void writeGaeste(Map<String, Gast> gastMap) {
         Writer writer = null;
         FileOutputStream fileOutputStream = null;
 
@@ -106,21 +179,70 @@ public class DataHandler {
             fileOutputStream = new FileOutputStream(bookPath);
             writer = new BufferedWriter(new OutputStreamWriter(fileOutputStream, "utf-8"));
 
-            for (Gast gastEingabe : gastVector) {
+            for (Map.Entry<String,Gast> gastEntry : gastMap.entrySet()) {
+                Gast gast = gastEntry.getValue();
                 String contents = String.join(";",
-                        gastEingabe.getVorname(),
-                        gastEingabe.getNachname(),
-                        gastEingabe.getAdresse(),
-                        gastEingabe.getHausnummer(),
-                        gastEingabe.getPlz().toString(),
-                        gastEingabe.getWohnort(),
-                        gastEingabe.getLand(),
-                        gastEingabe.getTelefon(),
-                        gastEingabe.getMobil(),
-                        gastEingabe.getGeburtsdatum(),
-                        gastEingabe.getMail(),
-                        gastEingabe.getCheck_in(),
-                        gastEingabe.getCheck_out()
+                        gast.getGastUUID(),
+                        gast.getVorname(),
+                        gast.getNachname(),
+                        gast.getAdresse(),
+                        gast.getHausnummer(),
+                        gast.getPlz().toString(),
+                        gast.getWohnort(),
+                        gast.getLand(),
+                        gast.getTelefon(),
+                        gast.getMobil(),
+                        gast.getGeburtsdatum(),
+                        gast.getMail(),
+                        gast.getCheck_in(),
+                        gast.getCheck_out()
+                );
+                writer.write(contents + '\n');
+            }
+        } catch (IOException ioEx) {
+            ioEx.printStackTrace();
+            throw new RuntimeException();
+
+        } finally {
+
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+
+                if (fileOutputStream != null) {
+                    fileOutputStream.close();
+
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public static void wirteHotel(Map<String, Hotel> hotelMap) {
+        Writer writer = null;
+        FileOutputStream fileOutputStream = null;
+
+        try {
+            String bookPath = Config.getProperty("hotelFile");
+            fileOutputStream = new FileOutputStream(bookPath);
+            writer = new BufferedWriter(new OutputStreamWriter(fileOutputStream, "utf-8"));
+
+            for (Map.Entry<String,Hotel> hotelEingabe : hotelMap.entrySet()) {
+
+                Hotel hotel = hotelEingabe.getValue();
+                String contents = String.join(";",
+                        hotel.getHotelUUID(),
+                        hotel.getName(),
+                        hotel.getSterne().toString(),
+                        hotel.getAdresse(),
+                        hotel.getHausnummer(),
+                        hotel.getPlz().toString(),
+                        hotel.getWohnort(),
+                        hotel.getLand(),
+                        hotel.getBaujahr(),
+                        hotel.toString()
                 );
                 writer.write(contents + '\n');
             }
@@ -146,28 +268,6 @@ public class DataHandler {
     }
 
 
-    /**
-     * Gets gast vector.
-     *
-     * @return the gast vector
-     */
-    public static Vector<Gast> getGastVector() {
-        if (gastVector.isEmpty()) {
-            readGaeste();
-        }
-
-        return gastVector;
-
-    }
-
-    /**
-     * Sets the bookMap
-     *
-     * @param gastVector the value to set
-     */
-    public static void setGastVector(Vector<Gast> gastVector) {
-        DataHandler.gastVector = gastVector;
-    }
 
     public static User readUser(String username, String password) {
 
@@ -190,6 +290,7 @@ public class DataHandler {
                 String[] values = line.split(";");
 
                 if (username.equals(values[0]) && password.equals(values[1])){
+                    user.setUsername(values[0]);
                     user.setUserRole(values[2]);
                 }
 
@@ -214,4 +315,48 @@ public class DataHandler {
 
     }
 
+    /**
+     * Gets the gastMap
+     *
+     * @return value of gastMap
+     */
+    public static Map<String, Gast> getGastMap() {
+        if(gastMap.isEmpty()){
+            readGaeste();
+        }
+        return gastMap;
+    }
+
+    /**
+     * Sets the gastMap
+     *
+     * @param gastMap the value to set
+     */
+
+    public static void setGastMap(Map<String, Gast> gastMap) {
+        DataHandler.gastMap = gastMap;
+    }
+
+    /**
+     * Gets the hotelMap
+     *
+     * @return value of hotelMap
+     */
+    public static Map<String, Hotel> getHotelMap() {
+        if (hotelMap.isEmpty()){
+            readHotel();
+        }
+
+        return hotelMap;
+    }
+
+    /**
+     * Sets the hotelMap
+     *
+     * @param hotelMap the value to set
+     */
+
+    public static void setHotelMap(Map<String, Hotel> hotelMap) {
+        DataHandler.hotelMap = hotelMap;
+    }
 }

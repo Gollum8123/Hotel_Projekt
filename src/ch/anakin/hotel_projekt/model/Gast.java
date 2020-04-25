@@ -2,10 +2,6 @@ package ch.anakin.hotel_projekt.model;
 
 import javax.validation.constraints.*;
 import javax.ws.rs.FormParam;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * short description
@@ -20,6 +16,9 @@ public class Gast {
     /**
      * Personattribute
      */
+    @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+    @FormParam("gastUUID")
+    private String gastUUID;
 
     @FormParam("vorname")
 
@@ -104,6 +103,25 @@ public class Gast {
 
 
     /**
+     * Gets the gastUUID
+     *
+     * @return value of gastUUID
+     */
+    public String getGastUUID() {
+        return gastUUID;
+    }
+
+    /**
+     * Sets the gastUUID
+     *
+     * @param gastUUID the value to set
+     */
+
+    public void setGastUUID(String gastUUID) {
+        this.gastUUID = gastUUID;
+    }
+
+    /**
      * Gets the vorname
      *
      * @return value of vorname
@@ -117,6 +135,7 @@ public class Gast {
      *
      * @param vorname the value to set
      */
+
     public void setVorname(String vorname) {
         this.vorname = vorname;
     }
@@ -135,6 +154,7 @@ public class Gast {
      *
      * @param nachname the value to set
      */
+
     public void setNachname(String nachname) {
         this.nachname = nachname;
     }
@@ -153,6 +173,7 @@ public class Gast {
      *
      * @param adresse the value to set
      */
+
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
@@ -171,6 +192,7 @@ public class Gast {
      *
      * @param hausnummer the value to set
      */
+
     public void setHausnummer(String hausnummer) {
         this.hausnummer = hausnummer;
     }
@@ -189,6 +211,7 @@ public class Gast {
      *
      * @param plz the value to set
      */
+
     public void setPlz(Integer plz) {
         this.plz = plz;
     }
@@ -207,6 +230,7 @@ public class Gast {
      *
      * @param wohnort the value to set
      */
+
     public void setWohnort(String wohnort) {
         this.wohnort = wohnort;
     }
@@ -225,6 +249,7 @@ public class Gast {
      *
      * @param land the value to set
      */
+
     public void setLand(String land) {
         this.land = land;
     }
@@ -243,6 +268,7 @@ public class Gast {
      *
      * @param telefon the value to set
      */
+
     public void setTelefon(String telefon) {
         this.telefon = telefon;
     }
@@ -261,6 +287,7 @@ public class Gast {
      *
      * @param mobil the value to set
      */
+
     public void setMobil(String mobil) {
         this.mobil = mobil;
     }
@@ -279,6 +306,7 @@ public class Gast {
      *
      * @param geburtsdatum the value to set
      */
+
     public void setGeburtsdatum(String geburtsdatum) {
         this.geburtsdatum = geburtsdatum;
     }
@@ -297,6 +325,7 @@ public class Gast {
      *
      * @param mail the value to set
      */
+
     public void setMail(String mail) {
         this.mail = mail;
     }
@@ -310,16 +339,15 @@ public class Gast {
         return check_in;
     }
 
-
     /**
      * Sets the check_in
      *
      * @param check_in the value to set
      */
+
     public void setCheck_in(String check_in) {
         this.check_in = check_in;
     }
-
 
     /**
      * Gets the check_out
@@ -335,10 +363,8 @@ public class Gast {
      *
      * @param check_out the value to set
      */
+
     public void setCheck_out(String check_out) {
         this.check_out = check_out;
-
     }
-
-
 }
