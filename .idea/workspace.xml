@@ -7,23 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aaf4e161-82cb-47f1-9ed3-6aad7a93bdc8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/testing/Hotel.postman_collection.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testing/Hotel.postman_test_run.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testing/hotel.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/gaeste.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/gastedit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/js/gaeste.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/js/gastedit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/anakin/hotel_projekt/model/Gast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/anakin/hotel_projekt/model/Gast.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/anakin/hotel_projekt/model/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/anakin/hotel_projekt/model/Hotel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/Copie/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testing/Copie/users.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/Hotel.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/testing/Hotel.postman_collection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/Hotel.postman_test_run.json" beforeDir="false" afterPath="$PROJECT_DIR$/testing/Hotel.postman_test_run.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testing/gaeste.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testing/gaeste.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/hotel.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testing/hotel.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testing/users.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/login.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,20 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ch/anakin/hotel_projekt/model/Gast.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1665">
-              <caret line="112" column="51" selection-start-line="112" selection-start-column="51" selection-end-line="112" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/js/login.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="63" column="10" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="10" />
+            <state relative-caret-position="375">
+              <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
             </state>
           </provider>
         </entry>
@@ -61,14 +39,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ch/anakin/hotel_projekt/model/Hotel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="42" column="34" lean-forward="true" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+            <state relative-caret-position="-330">
+              <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="40" lean-forward="true" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -216,10 +203,10 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1920" />
-    <option name="y" value="-1" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="x" value="2158" />
+    <option name="y" value="92" />
+    <option name="width" value="1430" />
+    <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -306,7 +293,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/testing" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -323,11 +310,11 @@
       <recent name="ch.anakin.hotel_projekt.service" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web" />
       <recent name="$PROJECT_DIR$/testing" />
       <recent name="$PROJECT_DIR$/testing/Copie" />
       <recent name="$PROJECT_DIR$/web/js" />
       <recent name="$PROJECT_DIR$/web/WEB-INF" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -538,7 +525,8 @@
     <MESSAGE value="Login" />
     <MESSAGE value="Hotel Added" />
     <MESSAGE value="Finito" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finito" />
+    <MESSAGE value="final version" />
+    <option name="LAST_COMMIT_MESSAGE" value="final version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -851,20 +839,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/anakin/hotel_projekt/model/Gast.java">
+    <entry file="file://$PROJECT_DIR$/web/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1665">
-          <caret line="112" column="51" selection-start-line="112" selection-start-column="51" selection-end-line="112" selection-end-column="51" />
+        <state relative-caret-position="390">
+          <caret line="26" column="40" lean-forward="true" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ch/anakin/hotel_projekt/model/Hotel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="34" lean-forward="true" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+        <state relative-caret-position="-330">
+          <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/anakin/hotel_projekt/model/Gast.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
         </state>
       </provider>
     </entry>
