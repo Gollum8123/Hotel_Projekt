@@ -19,7 +19,7 @@ import java.util.UUID;
  * <p>
  * Hotel_Projekt
  *
- * @author TODO
+ * @author Anakin Kirschler
  * @version 1.0
  * @since 22.04.20
  */

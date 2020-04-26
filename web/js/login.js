@@ -1,7 +1,7 @@
 /**
  * view-controller for login.html
  *
- * M133: Bookshelf
+ * M133: Hotel_Projekt
  *
  * @author  Anakin Krischler
  */
