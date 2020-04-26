@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang='de'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='author' content='Anakin Krischlerr'/>
+    <meta name='project' content='Hotel_Project'/>
+    <meta name='description' content='gast from edit'/>
+    <title>Gast bearbeiten</title>
+</head>
+<body>
+<form id='gasteditForm' name='gastedit'>
+    <h3>Gast bearbeiten</h3>
+    <div id='message' style='color: red;'></div>
+    <button type='button' id='logoff'>Abmelden</button>
+    <table>
+        <tr>
+            <td>Vorname</td>
+            <td>
+                <input id='vorname' name='vorname' type='text' size='30' maxlength='40' required/>
+                <input id='gastUUID' name='gastUUID' type='text' hidden />
+            </td>
+        </tr>
+        <tr>
+            <td>Nachname</td>
+            <td><input id='nachname' name='nachname' type='text' size='30' maxlength='40' required/></td>
+        </tr>
+        <tr>
+            <td>Adresse</td>
+            <td><input id='adresse' name='adresse' type='text' size='30' maxlength='40' required/></td>
+        </tr>
+        <tr>
+            <td>Hausnummer</td>
+            <td><input id='hausnummer' name='hausnummer' type='text' size='30' maxlength='6' required/></td>
+        </tr>
+        <tr>
+            <td>Plz</td>
+            <td><input id='plz' name='plz' type='number' min='1' max='999999' required/></td>
+        </tr>
+        <tr>
+            <td>Wohnort</td>
+            <td><input id='wohnort' name='wohnort' type='text' size='30' maxlength='40' required/></td>
+        </tr>
+        <tr>
+            <td>Land</td>
+            <td><input id='land' name='land' type='text' size='30' maxlength='40' required/></td>
+        </tr>
+        <tr>
+            <td>Telefon</td>
+            <td><input id='telefon' name='telefon' type='text' size='30' maxlength='40' required/></td>
+        </tr>
+        <tr>
+            <td>Mobil</td>
+            <td><input id='mobil' name='mobil' type='text' size='30' maxlength='40' required/></td>
+        </tr>
+        <tr>
+            <td>Geburtsdatum</td>
+            <td><input id='geburtsdatum' name='geburtsdatum' type='text' size='30' maxlength='40' required/></td>
+        </tr>
+        <tr>
+            <td>Mail</td>
+            <td><input id='mail' name='mail' type='text' size='30' maxlength='40' required/></td>
+        </tr>
+        <tr>
+            <td>Check_in</td>
+            <td><input id='check_in' name='check_in' type='text' size='30' maxlength='40' required/></td>
+        </tr>
+        <tr>
+            <td>Check_out</td>
+            <td><input id='check_out' name='check_out' type='text' size='30' maxlength='40' required/></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <button id='save' type='submit'>Speichern</button>
+            </td>
+            <td>
+                <button id='reset' type='reset'>Zurücksetzen</button>
+            </td>
+            <td>
+                <button id='cancel' type='button'>Abbruch</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<script src='./js/jquery-3.4.1.min.js'></script>
+<script src='./js/gastedit.js'></script>
+<script src='./js/util.js'></script>
+<script src='./js/login.js'></script>
+<script src='./js/js.cookie.js'></script>
+</body>
+</html>

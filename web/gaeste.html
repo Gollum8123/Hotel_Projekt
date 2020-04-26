@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Anakin Kirschler"/>
+    <meta name="project" content="Hotel_Project"/>
+    <meta name="description" content="Hotel Web Application"/>
+    <title>Gaeste</title>
+</head>
+<body>
+<h3>Gaeste</h3>
+<div id='nav'>
+
+
+    <button type='button' id='logoff'>Abmelden</button>
+    <span id='userRole'></span>
+    <span id='message' style='color: red;'></span>
+</div>
+<form id='gastForm'>
+    <table id='gaeste'>
+        <thead>
+        <tr>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>Adresse</th>
+            <th>Hausnummer</th>
+            <th>Plz</th>
+            <th>Wohnort</th>
+            <th>Land</th>
+            <th>Telefon</th>
+            <th>Mobil</th>
+            <th>Geburtsdatum</th>
+            <th>Mail</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <p>
+        <a href='gastedit.html'>Neuer Gast</a>
+    </p>
+</form>
+<script src='./js/jquery-3.4.1.min.js'></script>
+<script src='./js/gaeste.js'></script>
+<script src='./js/js.cookie.js'></script>
+<script src='./js/login.js'></script>
+</body>
+</html>

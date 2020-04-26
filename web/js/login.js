@@ -3,7 +3,7 @@
  *
  * M133: Bookshelf
  *
- * @author  Marcel Suter
+ * @author  Anakin Krischler
  */
 
 /**
@@ -37,7 +37,7 @@ function sendLogin(form) {
             data: $("#loginForm").serialize()
         })
         .done(function (jsonData) {
-            window.location.href = "./index.html";
+            window.location.href ="./gaeste.html";
         })
         .fail(function (xhr, status, errorThrown) {
             if (xhr.status == 401) {

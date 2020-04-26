@@ -28,6 +28,7 @@ public class Hotel {
 
 
     @FormParam("name")
+    @Pattern(regexp = "[A-Za-z]*")
     @NotEmpty
     @Size(min=1, max=50)
     private String name;

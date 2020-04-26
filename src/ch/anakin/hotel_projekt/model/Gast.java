@@ -102,13 +102,15 @@ public class Gast {
 
     @FormParam("check_in")
     @NotEmpty
-    //@Pattern(regexp = "[0-9]{2}.[0-9]{2}.[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{2}")
+    //@Pattern(regexp = "[0-9]{2}.[0-9]{2}.[0-9]{4}\\s[0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{2}")
+    @Pattern(regexp = "[0-9]{2}.[0-9]{2}.[0-9]{4}")
     private String check_in;
 
 
     @FormParam("check_out")
     @NotEmpty
     //@Pattern(regexp = "[0-9]{2}.[0-9]{2}.[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{2}")
+    @Pattern(regexp = "[0-9]{2}.[0-9]{2}.[0-9]{4}")
     private String check_out;
 
 
