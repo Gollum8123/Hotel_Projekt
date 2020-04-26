@@ -9,7 +9,7 @@ import javax.ws.rs.core.Response;
 /**
  * short description
  * <p>
- * Bookshelf
+ * Hotel_Project
  *
  * @author Anakin Krischler
  */

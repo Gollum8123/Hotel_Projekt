@@ -6,6 +6,8 @@ import javax.ws.rs.FormParam;
 /**
  * short description
  * <p>
+ * gast modelclass
+ * <p>
  * Hotel_Projekt
  *
  * @author Anakin Kirschler
@@ -21,45 +23,50 @@ public class Gast {
     private String gastUUID;
 
     @FormParam("vorname")
-
-    @Pattern(regexp = "[A-Z][a-zA-Z]*")
+    @Pattern(regexp = "[A-Z][a-z]*")
     @Size(min = 1, max = 50)
+    @NotEmpty
     private String vorname;
 
-    @FormParam("nachname")
 
+    @FormParam("nachname")
     @Size(min = 1, max = 50)
-    @Pattern(regexp = "[A-Z][a-zA-Z]*")
+    @Pattern(regexp = "[A-Z][a-z]*")
+    @NotEmpty
     private String nachname;
 
     @FormParam("adresse")
     @Size(min=1, max=50)
     @Pattern(regexp = "[A-Za-z]*")
+    @NotEmpty
     private String adresse;
 
     @FormParam("hausnummer")
     @Size(min=1, max=6)
+    @NotEmpty
     private String hausnummer;
 
-    @FormParam("plz")
 
+    @Min(value = 1)
+    @Max(value = 999999)
+    @NotNull
+    @FormParam("plz")
     private Integer plz;
 
     @FormParam("wohnort")
-
     @Pattern(regexp = "[A-Za-z]*")
+    @NotEmpty
     private String wohnort;
 
     @FormParam("land")
-
     @Pattern(regexp = "[A-Za-z]*")
+    @NotEmpty
     private String land;
 
     /**
      * Validate international phone numbers in EPP format
      */
     @FormParam("telefon")
-
     @Size(min=7, max=40)
     private String telefon;
 
@@ -67,7 +74,7 @@ public class Gast {
      * Validate international phone numbers in EPP format
      */
     @FormParam("mobil")
-
+    @NotEmpty
     @Size(min=7, max=40)
     private String mobil;
 
@@ -75,6 +82,7 @@ public class Gast {
      *
      */
     @FormParam("geburtsdatum")
+    @NotEmpty
     @Pattern(regexp = "[0-9]{2}.[0-9]{2}.[0-9]{4}")
     private String geburtsdatum;
 
@@ -83,7 +91,7 @@ public class Gast {
      * Java email validation permitted by RFC822
      */
     @FormParam("mail")
-
+    @NotEmpty
     @Email
     private String mail;
 
@@ -93,12 +101,14 @@ public class Gast {
      */
 
     @FormParam("check_in")
-
+    @NotEmpty
+    //@Pattern(regexp = "[0-9]{2}.[0-9]{2}.[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{2}")
     private String check_in;
 
 
     @FormParam("check_out")
-
+    @NotEmpty
+    //@Pattern(regexp = "[0-9]{2}.[0-9]{2}.[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{2}")
     private String check_out;
 
 
@@ -116,7 +126,6 @@ public class Gast {
      *
      * @param gastUUID the value to set
      */
-
     public void setGastUUID(String gastUUID) {
         this.gastUUID = gastUUID;
     }
@@ -135,7 +144,6 @@ public class Gast {
      *
      * @param vorname the value to set
      */
-
     public void setVorname(String vorname) {
         this.vorname = vorname;
     }
@@ -154,7 +162,6 @@ public class Gast {
      *
      * @param nachname the value to set
      */
-
     public void setNachname(String nachname) {
         this.nachname = nachname;
     }
@@ -173,7 +180,6 @@ public class Gast {
      *
      * @param adresse the value to set
      */
-
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
@@ -192,7 +198,6 @@ public class Gast {
      *
      * @param hausnummer the value to set
      */
-
     public void setHausnummer(String hausnummer) {
         this.hausnummer = hausnummer;
     }
@@ -211,7 +216,6 @@ public class Gast {
      *
      * @param plz the value to set
      */
-
     public void setPlz(Integer plz) {
         this.plz = plz;
     }
@@ -230,7 +234,6 @@ public class Gast {
      *
      * @param wohnort the value to set
      */
-
     public void setWohnort(String wohnort) {
         this.wohnort = wohnort;
     }
@@ -249,7 +252,6 @@ public class Gast {
      *
      * @param land the value to set
      */
-
     public void setLand(String land) {
         this.land = land;
     }
@@ -268,7 +270,6 @@ public class Gast {
      *
      * @param telefon the value to set
      */
-
     public void setTelefon(String telefon) {
         this.telefon = telefon;
     }
@@ -287,7 +288,6 @@ public class Gast {
      *
      * @param mobil the value to set
      */
-
     public void setMobil(String mobil) {
         this.mobil = mobil;
     }
@@ -306,7 +306,6 @@ public class Gast {
      *
      * @param geburtsdatum the value to set
      */
-
     public void setGeburtsdatum(String geburtsdatum) {
         this.geburtsdatum = geburtsdatum;
     }
@@ -325,7 +324,6 @@ public class Gast {
      *
      * @param mail the value to set
      */
-
     public void setMail(String mail) {
         this.mail = mail;
     }
@@ -344,7 +342,6 @@ public class Gast {
      *
      * @param check_in the value to set
      */
-
     public void setCheck_in(String check_in) {
         this.check_in = check_in;
     }
@@ -363,7 +360,6 @@ public class Gast {
      *
      * @param check_out the value to set
      */
-
     public void setCheck_out(String check_out) {
         this.check_out = check_out;
     }

@@ -15,6 +15,8 @@ import java.util.UUID;
 /**
  * short description
  * <p>
+ * service for hotel
+ * <p>
  * Hotel_Projekt
  *
  * @author TODO
@@ -24,6 +26,12 @@ import java.util.UUID;
 @Path("hotel")
 public class HotelService {
 
+    /**
+     * List publisher response.
+     *
+     * @param userRole the user role
+     * @return the response
+     */
     @GET
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
@@ -61,7 +69,7 @@ public class HotelService {
      * reads a publisher identified by its uuid
      *
      * @param hotelUUID the hotelUUID to be searched
-     * @param userRole      the role of the current user
+     * @param userRole  the role of the current user
      * @return Response with publisher-object
      */
     @GET
@@ -105,9 +113,9 @@ public class HotelService {
     /**
      * creates a new publisher
      *
-     * @param hotel a valid hotel
-     * @param userRole  the role of the current user
-     * @return Response
+     * @param hotel    a valid hotel
+     * @param userRole the role of the current user
+     * @return Response response
      */
     @POST
     @Path("create")
@@ -151,9 +159,9 @@ public class HotelService {
     /**
      * updates an existing publisher
      *
-     * @param hotel a valid hotel
-     * @param userRole  the role of the current user
-     * @return Response
+     * @param hotel    a valid hotel
+     * @param userRole the role of the current user
+     * @return Response response
      */
     @PUT
     @Path("update")
@@ -193,6 +201,13 @@ public class HotelService {
         return response;
     }
 
+    /**
+     * Delete book response.
+     *
+     * @param hotelUUID the hotel uuid
+     * @param userRole  the user role
+     * @return the response
+     */
     @DELETE
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)

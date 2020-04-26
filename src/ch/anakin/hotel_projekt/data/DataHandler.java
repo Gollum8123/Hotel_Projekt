@@ -101,6 +101,9 @@ public class DataHandler {
     }
 
 
+    /**
+     * Read hotel.
+     */
     public static void readHotel() {
 
         BufferedReader bufferedReader;
@@ -225,6 +228,11 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Wirte hotel.
+     *
+     * @param hotelMap the hotel map
+     */
     public static void wirteHotel(Map<String, Hotel> hotelMap) {
         Writer writer = null;
         FileOutputStream fileOutputStream = null;
@@ -275,7 +283,13 @@ public class DataHandler {
     }
 
 
-
+    /**
+     * Read user user.
+     *
+     * @param username the username
+     * @param password the password
+     * @return the user
+     */
     public static User readUser(String username, String password) {
 
         BufferedReader bufferedReader;
@@ -339,7 +353,6 @@ public class DataHandler {
      *
      * @param gastMap the value to set
      */
-
     public static void setGastMap(Map<String, Gast> gastMap) {
         DataHandler.gastMap = gastMap;
     }
@@ -362,7 +375,6 @@ public class DataHandler {
      *
      * @param hotelMap the value to set
      */
-
     public static void setHotelMap(Map<String, Hotel> hotelMap) {
         DataHandler.hotelMap = hotelMap;
     }

@@ -17,6 +17,8 @@ import java.util.Vector;
 /**
  * short description
  * <p>
+ * service for gast
+ * <p>
  * Hotel_Projekt
  *
  * @author Anakin Kirschler
@@ -30,6 +32,7 @@ public class GaesteService {
     /**
      * List gaeste response.
      *
+     * @param userRole the user role
      * @return the response
      */
     @GET
@@ -64,10 +67,12 @@ public class GaesteService {
         return response;
 
     }
+
     /**
      * Search gast response.
      *
      * @param gastUUID the gastUUID
+     * @param userRole the user role
      * @return the response
      */
     @GET
@@ -113,7 +118,8 @@ public class GaesteService {
     /**
      * Create gast response.
      *
-     * @param gast the gast
+     * @param gast     the gast
+     * @param userRole the user role
      * @return the response
      */
     @POST
@@ -159,6 +165,7 @@ public class GaesteService {
      * Delete book response.
      *
      * @param gastUUID the gastUUID
+     * @param userRole the user role
      * @return the response
      */
     @DELETE
@@ -206,7 +213,8 @@ public class GaesteService {
     /**
      * Update book response.
      *
-     * @param gast          the gast
+     * @param gast     the gast
+     * @param userRole the user role
      * @return the response
      */
     @PUT
@@ -214,7 +222,6 @@ public class GaesteService {
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateBook(
             @Valid @BeanParam Gast gast,
-
             @CookieParam("userRole") String userRole
     ) {
         int httpStatus;

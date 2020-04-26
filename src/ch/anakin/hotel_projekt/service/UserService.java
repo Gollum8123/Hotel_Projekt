@@ -7,10 +7,12 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
-import java.awt.*;
+
 
 /**
  * short description
+ * <p>
+ * service for user
  * <p>
  * Hotel_Projekt
  *
@@ -18,9 +20,15 @@ import java.awt.*;
  * @version 1.0
  * @since 07.04.20
  */
-
 @Path("user")
 public class UserService {
+    /**
+     * Login response.
+     *
+     * @param username the username
+     * @param password the password
+     * @return the response
+     */
     @POST
     @Path("login")
     @Produces(MediaType.TEXT_PLAIN)
@@ -52,6 +60,11 @@ public class UserService {
         return response;
     }
 
+    /**
+     * Logout response.
+     *
+     * @return the response
+     */
     @DELETE
     @Path("logout")
     @Produces(MediaType.TEXT_PLAIN)

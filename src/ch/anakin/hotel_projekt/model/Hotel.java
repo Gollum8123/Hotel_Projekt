@@ -12,6 +12,8 @@ import java.util.Map;
 /**
  * short description
  * <p>
+ * hotel modelcalss
+ * <p>
  * Hotel_Projekt
  *
  * @author Anakin Kirschler
@@ -32,46 +34,50 @@ public class Hotel {
 
     @FormParam("sterne")
     @Min(value = 0)
-    @Max(value = 5)
+    @Max(value = 6)
+    @NotNull
     private Integer sterne;
 
     @Size(min=1, max=50)
     @Pattern(regexp = "[A-Za-z]*")
+    @NotEmpty
     @FormParam("adresse")
     private String adresse;
 
-    @Size(min=1, max=6)
+    @Size(min=1, max=10)
     @FormParam("hausnummer")
+    @NotEmpty
     private String hausnummer;
 
-    @Size(min=1, max=15)
+    @Min(value = 1)
+    @Max(value = 999999)
     @FormParam("plz")
+    @NotNull
     private Integer plz;
 
     @Size(min=1, max=15)
     @Pattern(regexp = "[a-zA-Z]*")
     @FormParam("ort")
+    @NotEmpty
     private String wohnort;
 
     @Size(min=1, max=56)
     @Pattern(regexp = "[a-zA-Z]*")
     @FormParam("land")
+    @NotEmpty
     private String land;
 
     @Pattern(regexp = "\\d{4}")
     @FormParam("baujahr")
+    @NotEmpty
     private String baujahr;
 
 
     private Map<String, Gast> gaesteListe = new HashMap<>();
 
-    @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+
     @FormParam("gaesteListe")
     private String gaesteListeString;
-
-
-
-
 
 
     /**
@@ -88,7 +94,6 @@ public class Hotel {
      *
      * @param hotelUUID the value to set
      */
-
     public void setHotelUUID(String hotelUUID) {
         this.hotelUUID = hotelUUID;
     }
@@ -107,7 +112,6 @@ public class Hotel {
      *
      * @param name the value to set
      */
-
     public void setName(String name) {
         this.name = name;
     }
@@ -126,7 +130,6 @@ public class Hotel {
      *
      * @param sterne the value to set
      */
-
     public void setSterne(Integer sterne) {
         this.sterne = sterne;
     }
@@ -145,7 +148,6 @@ public class Hotel {
      *
      * @param adresse the value to set
      */
-
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
@@ -164,7 +166,6 @@ public class Hotel {
      *
      * @param hausnummer the value to set
      */
-
     public void setHausnummer(String hausnummer) {
         this.hausnummer = hausnummer;
     }
@@ -183,7 +184,6 @@ public class Hotel {
      *
      * @param plz the value to set
      */
-
     public void setPlz(Integer plz) {
         this.plz = plz;
     }
@@ -202,7 +202,6 @@ public class Hotel {
      *
      * @param wohnort the value to set
      */
-
     public void setWohnort(String wohnort) {
         this.wohnort = wohnort;
     }
@@ -221,7 +220,6 @@ public class Hotel {
      *
      * @param land the value to set
      */
-
     public void setLand(String land) {
         this.land = land;
     }
@@ -240,7 +238,6 @@ public class Hotel {
      *
      * @param baujahr the value to set
      */
-
     public void setBaujahr(String baujahr) {
         this.baujahr = baujahr;
     }
@@ -260,11 +257,16 @@ public class Hotel {
      *
      * @param gaesteListe the value to set
      */
-
     public void setGaesteListe(Map<String, Gast> gaesteListe) {
         this.gaesteListe = gaesteListe;
     }
 
+    /**
+     * Add gast.
+     *
+     * @param s    the s
+     * @param gast the gast
+     */
     public void addGast(String s, Gast gast){
         gaesteListe.put(s,gast);
     }
@@ -283,7 +285,6 @@ public class Hotel {
      *
      * @param gaesteListeString the value to set
      */
-
     public void setGaesteListeString(String gaesteListeString) {
         this.gaesteListeString = gaesteListeString;
 

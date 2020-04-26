@@ -3,9 +3,11 @@ package ch.anakin.hotel_projekt.model;
 /**
  * short description
  * <p>
+ * user modelclass
+ * <p>
  * Hotel_Projekt
  *
- * @author TODO
+ * @author Anakin Krischler
  * @version 1.0
  * @since 07.04.20
  */
@@ -14,6 +16,9 @@ public class User {
     private String username;
     private String userRole;
 
+    /**
+     * Instantiates a new User.
+     */
     public User() {
         userRole = "guest";
     }
@@ -32,7 +37,6 @@ public class User {
      *
      * @param username the value to set
      */
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -51,7 +55,6 @@ public class User {
      *
      * @param user the value to set
      */
-
     public void setUser(String user) {
         this.username = user;
     }
@@ -70,7 +73,6 @@ public class User {
      *
      * @param userRole the value to set
      */
-
     public void setUserRole(String userRole) {
         this.userRole = userRole;
     }
